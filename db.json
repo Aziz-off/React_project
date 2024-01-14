@@ -1,4 +1,59 @@
 {
-    "products":[],
-    "categories":[]
+  "products": [
+    {
+      "title": "Avatar. The last Airbender.",
+      "description": "Book 1: Water.",
+      "category": "Cartoonfffff",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 1
+    },
+    {
+      "title": "Avatar. The last Airbender.",
+      "description": "Book 1: Water.",
+      "category": "Cartoon",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 2
+    },
+    {
+      "title": "Avatar. ",
+      "description": "Book 1: Water.",
+      "category": "Cartoon",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 3
+    },
+    {
+      "title": "Avatar. The last Airbender.",
+      "description": "Book 1: Water.",
+      "category": "Cartoon",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 5
+    },
+    {
+      "title": "Avatar. The last Airbender.",
+      "description": "Book 1: Water.",
+      "category": "Cartoon",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 6
+    },
+    {
+      "title": "Avatar. The last Airbender.",
+      "description": "Book 1: Water.",
+      "category": "Cartoon",
+      "price": 22200000,
+      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
+      "year": "2008, 28 July",
+      "id": 7
+    }
+  ],
+  "categories": []
 }
