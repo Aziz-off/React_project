@@ -1,6 +1,8 @@
 import React from "react";
 import ProductList from "../components/products/ProductList";
 
+
+
 const HomePage = () => {
   return (
     <div>
@@ -23,7 +25,9 @@ const HomePage = () => {
           </h1>
         </div>
       </section>
+     
 	  <ProductList />
+  
     </div>
   );
 };

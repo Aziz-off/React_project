@@ -32,7 +32,7 @@ const DetailsPage = () => {
                   {oneProduct.title}
                 </Typography>
 				<br />
-                <Typography variant="h4" color="text.secondary" component="div">
+                <Typography variant="h6" color="text.secondary" component="div">
                   {oneProduct.description}
                 </Typography>
 				<br />
@@ -41,11 +41,17 @@ const DetailsPage = () => {
 						{oneProduct.price}$
 					</Typography>
 				</CardContent>
-              </CardContent>
-            </CardActionArea>
-			<CardActions>
+
+        <CardActions>
 				<Button sx={{m: 2}} size="small" variant="contained">Add to Bag</Button>
 			</CardActions>
+      <CardActions>
+				<Button sx={{m: 2}} size="small" variant="contained">View thrailer</Button>
+			</CardActions>
+              </CardContent>
+
+            </CardActionArea>
+			
           </Card>
         </Container>
       ) : (

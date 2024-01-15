@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import DetailsPage from '../pages/DetailsPage';
 import Detail from '../components/products/Detail';
+import ProductPage from '../pages/ProductPage';
 
 export const ADMIN_ROUTES = [
 	{
@@ -31,6 +32,7 @@ const PUBLIC_ROUTES = [
 		element: <DetailsPage />,
 		id: 2,
 	},
+	{ id: 3, link: "/products", element: <HomePage /> },
 ];
 
 

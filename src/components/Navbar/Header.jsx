@@ -9,16 +9,24 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import AdminPanel from "../admin/AdminPanel";
+import SideBar from "../products/SideBar";
 
+
+
+const pages = [
+  { id: 1, title: "HOME", link: "/products" },
+  { id: 2, title: "About", link: "/about" },
+  { id: 3, title: "Contacts", link: "/contacts" },
+];
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -49,7 +57,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -72,7 +79,13 @@ export default function Header() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = React.useState(searchParams.get("q") || "");
+  React.useEffect(() => {
+    setSearchParams({
+      q: search,
+    });
+  }, [search]);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -193,9 +206,13 @@ export default function Header() {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
+            
+            <SideBar/>
             <IconButton
               size="large"
               edge="start"
@@ -206,6 +223,14 @@ export default function Header() {
             >
               <AdminPanel />
             </IconButton>
+          
+          {pages.map((elem) => (
+            <Link key={elem.id} to={elem.link}>
+              <MenuItem onClick={handleMenuClose}>
+                <Typography textAlign={"center"}>{elem.title}</Typography>
+                </MenuItem>
+                </Link>
+          ))}
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
