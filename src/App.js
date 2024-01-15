@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/Navbar/Header";
+import Header from "./components/homePage/Header";
 import MainRoutes from "./routes/MainRoutes";
 import ProductContextProvider from "./components/context/ProductContextProvider";
 

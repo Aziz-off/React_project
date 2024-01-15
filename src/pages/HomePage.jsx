@@ -1,5 +1,6 @@
 import React from "react";
 import ProductList from "../components/products/ProductList";
+import WatchNow from "../components/homePage/WatchNow";
 
 
 
@@ -27,7 +28,7 @@ const HomePage = () => {
       </section>
      
 	  <ProductList />
-  
+    <WatchNow/>
     </div>
   );
 };

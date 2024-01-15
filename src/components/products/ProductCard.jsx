@@ -27,41 +27,34 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ProductCard({ elem}) {
- 
-
+export default function ProductCard({ elem }) {
   const [expanded, setExpanded] = React.useState(false);
-  const {deleteProduct} = useProducts();
+  const { deleteProduct } = useProducts();
 
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false)
-  const handleOpen = ()=> setOpen(true)
-  const handleClose = ()=> setOpen(false)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card sx={{ maxWidth: 305, margin: "10px"}}>
-      <CardHeader title={elem.title} subheader={elem.year} sx={{height: "100px", textAlign: "center"}}/>
+    <Card sx={{ width: 305, margin: "10px auto", borderRadius: "15px" }}>
       <CardMedia
         sx={{ cursor: "pointer" }}
         component="img"
-        height="300"
+        height="400"
         image={elem.picture}
         alt="Paella dish"
         onClick={() => navigate(`/details/${elem.id}`)}
       />
-      <CardContent>
-        <Typography component="h2">
-          {elem.category}
+      <CardContent component="h3" sx={{margin: 0, padding: "15px"}}>{elem.title}</CardContent>
+      <CardContent sx={{margin: 0, padding: "0 15px"}}>
+        <Typography component="h6">{elem.category}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {elem.price} $
         </Typography>
-		<Typography variant="body2" color="text.secondary">
-          {elem.price}
-        </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          {elem.description}
-        </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -70,21 +63,20 @@ export default function ProductCard({ elem}) {
         <Button
           variant="contained"
           size="small"
-          sx={{ bgcolor: "#ff6347", fontWeight: 900, marginRight: "5px"}}
+          sx={{ bgcolor: "#ff6347", fontWeight: 900, marginRight: "5px" }}
           onClick={() => navigate(`/edit/${elem.id}`)}
         >
           Edit
         </Button>
-		<Button
+        <Button
           variant="contained"
           size="small"
-          sx={{ bgcolor: "#333333", fontWeight: 900, color: "#ff6347"}}
+          sx={{ bgcolor: "#333333", fontWeight: 900, color: "#ff6347" }}
           onClick={() => deleteProduct(elem.id)}
         >
           Delete
         </Button>
       </CardActions>
-      
     </Card>
   );
 }

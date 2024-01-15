@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,30 +6,25 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Container } from "@mui/material";
 
-import ModalView from "./ModalView";
 import { useProducts } from "../context/ProductContextProvider";
 
-const Detail = () => {
+const Detail = (props) => {
   const { getOneProduct, oneProduct } = useProducts();
   const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     getOneProduct(id);
-  }, []);
-  console.log("Video URL:", oneProduct.videoPath);
+  }, [id]);
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
   return (
     <div>
       {oneProduct ? (
-        <Container sx={{ marginTop: 8 }}>
+        <Container sx={{ marginTop: 8 }} >
           <Card sx={{ maxWidth: "100%", mb: 10 }}>
             <CardActionArea sx={{ height: 600, display: "flex", p: 2 }}>
               <CardMedia
@@ -41,9 +35,12 @@ const Detail = () => {
                 alt="product"
               />
               <CardContent>
-                <Typography gutterBottom variant="h3" component="div">
-                  {oneProduct.title}
-                </Typography>
+              <Typography sx={{ fontFamily: 'system-ui' }} gutterBottom variant="h3" component="div">
+  {oneProduct.title}
+</Typography>
+
+
+
                 <br />
                 <Typography
                   variant="h6"
@@ -66,7 +63,7 @@ const Detail = () => {
                 <CardActions>
                   <Button
                     sx={{ m: 2 }}
-                    size="small"
+                    size="big"
                     variant="contained"
                     onClick={handleOpenModal}
                   >
@@ -76,15 +73,6 @@ const Detail = () => {
               </CardContent>
             </CardActionArea>
           </Card>
-          {isModalOpen && (
-            
-            <ModalView
-              videoUrl={oneProduct.videoPath}
-              
-              handleClose={handleCloseModal}
-            />
-          )}
-          
         </Container>
       ) : (
         <h1>Loading...</h1>

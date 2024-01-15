@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddProduct from '../components/products/AddProduct';
 import { Button } from 'antd';
-import AddCategoryModal from '../components/products/AddCategoryModal';
+
 
 const AdminPage = () => {
   const [open, setOpen] = useState(false)

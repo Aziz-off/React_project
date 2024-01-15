@@ -7,6 +7,8 @@ import PaginationControlled from './Pagination';
 
 const ProductList = () => {
 	const {getProducts, products} = useProducts();
+	//!=====SEARCH============
+
 	const [searchParams, setSearchParams] = useSearchParams();
 	useEffect(() => {
 		getProducts()
@@ -17,7 +19,7 @@ const ProductList = () => {
 		setPage(value);
 	}
 
-	const ITEMS_PER_PAGE = 3;
+	const ITEMS_PER_PAGE = 4;
 	const count = Math.ceil(products.length / ITEMS_PER_PAGE);
 	console.log(count);
 
