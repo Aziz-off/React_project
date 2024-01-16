@@ -12,44 +12,38 @@ const Detail = (props) => {
   const { getOneProduct, oneProduct } = useProducts();
   const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     getOneProduct(id);
   }, [id]);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <div>
       {oneProduct ? (
-        <Container sx={{ marginTop: 8 }} >
-          <Card sx={{ maxWidth: "100%", mb: 10 }}>
-            <CardActionArea sx={{ height: 600, display: "flex", p: 2 }}>
-              <CardMedia
-                sx={{ width: 500, objectFit: "contain" }}
-                component="img"
-                height="340"
-                image={oneProduct.picture}
-                alt="product"
-              />
+        <Container sx={{ marginTop: 8 }}>
+          <Card sx={{ display: 'flex', maxWidth: "100%", mb: 10 }}>
+            <CardActionArea sx={{ display: 'flex', flexDirection: 'column', flex: 1, p: 2 }}>
               <CardContent>
-              <Typography sx={{ fontFamily: 'system-ui' }} gutterBottom variant="h3" component="div">
-  {oneProduct.title}
-</Typography>
+                <Typography sx={{ fontFamily: 'system-ui' }} gutterBottom variant="h3" component="div">
+                  {oneProduct.title}
+                </Typography>
 
-
-
-                <br />
                 <Typography
                   variant="h6"
-                  color="text.secondary"
+                  
                   component="div"
                 >
                   {oneProduct.description}
                 </Typography>
-                <br />
+
                 <CardContent>
                   <Typography
                     variant="h4"
@@ -72,6 +66,13 @@ const Detail = (props) => {
                 </CardActions>
               </CardContent>
             </CardActionArea>
+            <CardMedia
+              sx={{ width: 500, objectFit: "contain" }}
+              component="img"
+              height="340"
+              image={oneProduct.picture}
+              alt="product"
+            />
           </Card>
         </Container>
       ) : (

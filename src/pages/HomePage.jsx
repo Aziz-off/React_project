@@ -1,12 +1,19 @@
 import React from "react";
 import ProductList from "../components/products/ProductList";
-import WatchNow from "../components/homePage/WatchNow";
-
+import WatchNow from "../components/Navbar/WatchNow";
+import cosmos from "../assets/cosmos.jpg";
 
 
 const HomePage = () => {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${cosmos})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <section
         style={{
           display: "flex",
@@ -26,9 +33,9 @@ const HomePage = () => {
           </h1>
         </div>
       </section>
-     
-	  <ProductList />
-    <WatchNow/>
+      <ProductList />
+      <WatchNow />
+      
     </div>
   );
 };

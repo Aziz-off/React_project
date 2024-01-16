@@ -40,19 +40,19 @@ export default function ProductCard({ elem }) {
   };
 
   return (
-    <Card sx={{ width: 305, margin: "10px auto", borderRadius: "15px" }}>
+    <Card sx={{ width: 205, margin: "10px auto",  background: "none" }}>
       <CardMedia
-        sx={{ cursor: "pointer" }}
+        sx={{ cursor: "pointer", borderRadius: "20px"}}
         component="img"
-        height="400"
+        height="300"
         image={elem.picture}
         alt="Paella dish"
         onClick={() => navigate(`/details/${elem.id}`)}
       />
-      <CardContent component="h3" sx={{margin: 0, padding: "15px"}}>{elem.title}</CardContent>
+      <CardContent component="h3" sx={{margin: 0, padding: "15px", textAlign:"center", color: "white" }}>{elem.title}</CardContent>
       <CardContent sx={{margin: 0, padding: "0 15px"}}>
-        <Typography component="h6">{elem.category}</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography color={"white"} component="h6">{elem.category}</Typography>
+        <Typography variant="body2" color={"white"}>
           {elem.price} $
         </Typography>
       </CardContent>

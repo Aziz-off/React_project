@@ -19,7 +19,7 @@ const ProductList = () => {
 		setPage(value);
 	}
 
-	const ITEMS_PER_PAGE = 4;
+	const ITEMS_PER_PAGE = 5;
 	const count = Math.ceil(products.length / ITEMS_PER_PAGE);
 	console.log(count);
 
@@ -36,6 +36,8 @@ const ProductList = () => {
 			  flexWrap: 'wrap',
 			  justifyContent: 'space-between',
 			  mt: '25px',
+			  
+			  fontFamily: "monaco",
 			}}
 		  >
 			{currData().map((item) => (
@@ -47,9 +49,10 @@ const ProductList = () => {
 			  display: 'flex',
 			  justifyContent: 'center',
 			  mt: '15px', 
+			  
 			}}
 		  >
-			<PaginationControlled handleChange={handleChange} page={page} count={count} />
+			<PaginationControlled handleChange={handleChange} page={page} count={count}  />
 		  </Box>
 		</div>
 	  );

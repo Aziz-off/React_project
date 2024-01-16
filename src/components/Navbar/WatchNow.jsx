@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: "#000",
   fontWeight: "700",
   borderRadius: "20px",
-  background: "#FFF",
+  background: "#191970",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
@@ -46,16 +46,18 @@ const WatchNow = () => {
         marginTop: "20px",
       }}
     >
-      <Box
-        sx={{
-          width: "100%",
-          height: "100%",
-          borderRadius: "40px",
-          background: "#F0F0F0",
-          fontWeight: "700",
-          padding: "5% 0",
-        }}
-      >
+     <Box
+      sx={{
+        width: "100%",
+        height: "100%",
+        borderRadius: "40px",
+        
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        fontWeight: "700",
+        padding: "5% 0",
+      }}
+    >
         <h2
           style={{
             color: "#000",
