@@ -1,17 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProducts } from '../context/ProductContextProvider';
 import ProductCard from './ProductCard';
+import { useSearchParams } from 'react-router-dom';
+import { Box } from '@mui/material';
+import PaginationControlled from './Pagination';
 
 const ProductList = () => {
 	const {getProducts, products} = useProducts();
+	//!=====SEARCH============
+
+	const [searchParams, setSearchParams] = useSearchParams();
 	useEffect(() => {
 		getProducts()
-	}, []);
-  return (
-	<div style={{display: "flex", flexWrap: "wrap", margin: "0 auto", maxWidth: "80%"}}>
-	  {products ? (products.map((item) => <ProductCard item={item}/>)) : (<h2>Loading...</h2>)}
-	</div>
-  );
-}
+	}, [searchParams]);
+	//!=====PAGINATION=========
+	const [page, setPage] = useState(1);
+	const handleChange = (event, value) =>{
+		setPage(value);
+	}
 
+	const ITEMS_PER_PAGE = 5;
+	const count = Math.ceil(products.length / ITEMS_PER_PAGE);
+	console.log(count);
+
+	function currData(){
+		const startIndex = (page - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return products.slice(startIndex, endIndex);
+	}
+	return (
+		<div>
+		  <Box
+			sx={{
+			  display: 'flex',
+			  flexWrap: 'wrap',
+			  justifyContent: 'space-between',
+			  mt: '25px',
+			  
+			  fontFamily: "monaco",
+			}}
+		  >
+			{currData().map((item) => (
+			  <ProductCard key={item.id} elem={item} />
+			))}
+		  </Box>
+		  <Box
+			sx={{
+			  display: 'flex',
+			  justifyContent: 'center',
+			  mt: '15px', 
+			  
+			}}
+		  >
+			<PaginationControlled handleChange={handleChange} page={page} count={count}  />
+		  </Box>
+		</div>
+	  );
+	};
+	
 export default ProductList;

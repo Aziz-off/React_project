@@ -4,7 +4,8 @@ import EditPage from '../pages/EditPage';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import DetailsPage from '../pages/DetailsPage';
-import Detail from '../components/products/Detail';
+import AboutPage from '../pages/AboutPage';
+import ContactPage from '../pages/ContactPage';
 
 export const ADMIN_ROUTES = [
 	{
@@ -31,6 +32,9 @@ const PUBLIC_ROUTES = [
 		element: <DetailsPage />,
 		id: 2,
 	},
+	{ id: 3, link: "/products", element: <HomePage /> },
+	{ id: 4, link: "/about", element: <AboutPage /> },
+	{ id: 5, link: "/contact", element: <ContactPage /> },
 ];
 
 

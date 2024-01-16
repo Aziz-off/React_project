@@ -9,15 +9,21 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link, useNavigate } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AdminPanel from "../admin/AdminPanel";
+import SideBar from "../products/SideBar";
+
+const pages = [
+  { id: 1, title: "HOME", link: "/products" },
+  { id: 2, title: "ABOUT", link: "/about" },
+  { id: 3, title: "CONTACT", link: "/contacts" },
+];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -49,7 +55,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -59,20 +64,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#1976d2",
-    },
-  },
-});
-
 export default function Header() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = React.useState(searchParams.get("q") || "");
+  React.useEffect(() => {
+    setSearchParams({
+      q: search,
+    });
+  }, [search]);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -138,93 +140,109 @@ export default function Header() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  <IconButton
+    size="large"
+    aria-label="show 4 new mails"
+    color="inherit"
+  >
+    <Badge badgeContent={4} color="error">
+      <MailIcon />
+    </Badge>
+  </IconButton>
+  <p>Messages</p>
+</MenuItem>
+<MenuItem>
+  <IconButton
+    size="large"
+    aria-label="show 17 new notifications"
+    color="inherit"
+  >
+    <Badge badgeContent={17} color="error">
+      <NotificationsIcon />
+    </Badge>
+  </IconButton>
+  <p>Notifications</p>
+</MenuItem>
 
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={darkTheme}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-              onClick={() => navigate("/")}
-            >
-              🎥<b className="online">ON</b>-Line
-            </IconButton>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-              onClick={() => navigate("/admin")}
-            >
-              <AdminPanel />
-            </IconButton>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="primary-search-account-menu"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <p>Profile</p>
+              </MenuItem>
+            </Menu>
+          );
+        
+          return (
+            <Box sx={{ flexGrow: 1 }}>
+              <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+                <Toolbar>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    sx={{ mr: 2 }}
+                    onClick={() => navigate("/")}
+                  >
+                    🎥<b className="online">ON</b>-Line
+                  </IconButton>
+                  <Search>
+                    <SearchIconWrapper>
+                      <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                      placeholder="Search…"
+                      onChange={(e) => setSearch(e.target.value)}
+                      value={search}
+                      inputProps={{ "aria-label": "search" }}
+                    />
+                  </Search>
+        
+                  <SideBar />
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    sx={{ mr: 2 }}
+                    onClick={() => navigate("/admin")}
+                  >
+                    <AdminPanel />
+                  </IconButton>
+        
+                  {pages.map((elem) => (
+                    <Link key={elem.id} to={elem.link}>
+                      <MenuItem onClick={handleMenuClose}>
+                        <Typography textAlign={"center"}>{elem.title}</Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
+                  <Box sx={{ flexGrow: 1 }} />
+                  <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                    <IconButton
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                  </Box>
+                </Toolbar>
+              </AppBar>
+        
+              {renderMenu}
             </Box>
-          </Toolbar>
-        </AppBar>
-      </ThemeProvider>
-
-      {renderMenu}
-    </Box>
-  );
-}
+          );
+        }
+        

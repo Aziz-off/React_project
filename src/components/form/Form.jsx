@@ -2,6 +2,7 @@ import { Button, FormControl, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
+import CategorySelect from "../products/CategorySelect";
 
 const init = {
   title: "",
@@ -9,6 +10,7 @@ const init = {
   category: "",
   price: "",
   picture: "",
+  videoPath:"",
   year: "",
 };
 
@@ -86,14 +88,7 @@ const Form = ({ isEdit }) => {
         onChange={handleInput}
         value={product.description}
       />
-      <TextField
-        placeholder="enter category"
-        variant="outlined"
-        name="category"
-        fullWidth
-        onChange={handleInput}
-        value={product.category}
-      />
+      <CategorySelect handleInput={handleInput} />
       <TextField
         placeholder="enter price"
         variant="outlined"
@@ -103,14 +98,21 @@ const Form = ({ isEdit }) => {
         value={product.price}
       />
       <TextField
-        placeholder="enter url"
+        placeholder="enter url IMG"
         variant="outlined"
         name="picture"
         fullWidth
         onChange={handleInput}
         value={product.picture}
       />
-
+      <TextField
+        placeholder="enter url VIDEO" 
+        variant="outlined"
+        name="videoPath"
+        fullWidth
+        onChange={handleInput}
+        value={product.videoPath}
+      />
       {isEdit ? (
         <Button
           sx={{
