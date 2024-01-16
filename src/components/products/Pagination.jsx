@@ -5,16 +5,18 @@ export default function PaginationControlled(props) {
   const { page, count, handleChange } = props;
 
   return (
-    <Stack spacing={2} sx={{ color: 'white' }}>
-      <Typography>
+    <Stack spacing={2}>
+      <Typography  style={{ color: 'white' }}>
         Page: {page}
       </Typography>
       <Pagination
         count={count}
         page={page}
         onChange={handleChange}
-        sx={{ '& .MuiPaginationItem-page': { color: 'white' } }}
+        variant="outlined"
+        shape="rounded"
+        sx={{ '& .MuiPaginationItem-page': { color: 'white',} }}
       />
     </Stack>
   );
-}
+};

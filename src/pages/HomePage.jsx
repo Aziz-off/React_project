@@ -2,6 +2,7 @@ import React from "react";
 import ProductList from "../components/products/ProductList";
 import WatchNow from "../components/Navbar/WatchNow";
 import cosmos from "../assets/cosmos.jpg";
+import Head from "../components/Navbar/Body";
 
 
 const HomePage = () => {
@@ -14,7 +15,9 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+       <Head/>
       <section
+     
         style={{
           display: "flex",
           justifyContent: "center",
