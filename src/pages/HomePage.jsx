@@ -2,7 +2,8 @@ import React from "react";
 import ProductList from "../components/products/ProductList";
 import WatchNow from "../components/Navbar/WatchNow";
 import cosmos from "../assets/cosmos.jpg";
-
+import Head from "../components/Navbar/Body";
+import BoxPart from "../components/Navbar/BoxPart";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+      <BoxPart />
       <section
         style={{
           display: "flex",
@@ -21,21 +23,9 @@ const HomePage = () => {
           fontSize: "32px",
         }}
       >
-        <div>
-          <h1
-            style={{
-              color: "grey",
-              letterSpacing: "1.5px",
-              fontWeight: "600",
-            }}
-          >
-            Product page
-          </h1>
-        </div>
       </section>
       <ProductList />
       <WatchNow />
-      
     </div>
   );
 };

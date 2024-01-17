@@ -1,16 +1,6 @@
 {
   "products": [
     {
-      "title": "Avatar. The last Airbender.",
-      "description": "Book 1: Water.",
-      "category": "Cartoonfffff",
-      "price": 22200000,
-      "picture": "https://www.pluggedin.com/wp-content/uploads/2020/01/avatar-the-last-airbender-1024x689.jpg",
-      "videoPath": "",
-      "year": "2008, 28 July",
-      "id": 1
-    },
-    {
       "title": "Disenchanted",
       "description": "Adams and Rudolph joined their co-stars onstage donning Disney outfits, complete with churros and bubble wands in hand. After the cast shared their excitement for the next installment of the beloved franchise, the audience was treated to an all-new trailer.",
       "category": "Cartoon",
@@ -69,6 +59,16 @@
       "videoPath": "https://youtu.be/G-ZAFS5bkYI",
       "year": "2023",
       "id": 9
+    },
+    {
+      "title": "qqqq",
+      "description": "qqqq",
+      "category": "Series",
+      "price": null,
+      "picture": "2222",
+      "videoPath": "22222",
+      "year": "qqqq",
+      "id": 10
     }
   ],
   "categories": [

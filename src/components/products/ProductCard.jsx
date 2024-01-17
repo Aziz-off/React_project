@@ -15,6 +15,8 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContextProvider";
 import Detail from "./Detail";
+import { AddShoppingCart } from "@mui/icons-material";
+import { useCart } from "../context/CartContextProvider";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,7 +32,7 @@ const ExpandMore = styled((props) => {
 export default function ProductCard({ elem }) {
   const [expanded, setExpanded] = React.useState(false);
   const { deleteProduct } = useProducts();
-
+  const { addProductToCart } = useCart();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,7 +42,7 @@ export default function ProductCard({ elem }) {
   };
 
   return (
-    <Card sx={{ width: 205, margin: "10px auto",  background: "none" }}>
+    <Card sx={{ width: 250, margin: "10px auto",  background: "none" }}>
       <CardMedia
         sx={{ cursor: "pointer", borderRadius: "20px"}}
         component="img"
@@ -49,7 +51,10 @@ export default function ProductCard({ elem }) {
         alt="Paella dish"
         onClick={() => navigate(`/details/${elem.id}`)}
       />
-      <CardContent component="h3" sx={{margin: 0, padding: "15px", textAlign:"center", color: "white" }}>{elem.title}</CardContent>
+ <CardContent sx={{ margin: 0, padding: "15px", textAlign: "center", color: "white" }}>
+  <div style={{ marginBottom: "20px" }}>{elem.title}</div>
+</CardContent>
+
       <CardContent sx={{margin: 0, padding: "0 15px"}}>
         <Typography color={"white"} component="h6">{elem.category}</Typography>
         <Typography variant="body2" color={"white"}>
@@ -57,7 +62,7 @@ export default function ProductCard({ elem }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" sx={{color:"white"}}>
           <FavoriteIcon />
         </IconButton>
         <Button
@@ -76,6 +81,9 @@ export default function ProductCard({ elem }) {
         >
           Delete
         </Button>
+        <IconButton onClick={() => addProductToCart(elem)} sx={{color:"white"}}>
+          <AddShoppingCart />
+        </IconButton>
       </CardActions>
     </Card>
   );

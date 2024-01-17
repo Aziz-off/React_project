@@ -18,6 +18,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AdminPanel from "../admin/AdminPanel";
 import SideBar from "../products/SideBar";
+import { useCart } from "../context/CartContextProvider";
+import { ShoppingCart } from "@mui/icons-material";
 
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
@@ -66,10 +68,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header() {
   const navigate = useNavigate();
+  const [badgeCount, setBadgeCount] = React.useState(0);
+  const { getProductsCountInCart, addProductToCart } = useCart();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
+  React.useEffect(() => {
+    setBadgeCount(getProductsCountInCart());
+  }, [addProductToCart]);
   React.useEffect(() => {
     setSearchParams({
       q: search,
@@ -152,6 +159,11 @@ export default function Header() {
   <p>Messages</p>
 </MenuItem>
 <MenuItem>
+<IconButton size="large" aria-label="show 4 new mails" color="inherit">
+    <Badge badgeContent={4} color="error">
+      <MailIcon />
+    </Badge>
+  </IconButton>
   <IconButton
     size="large"
     aria-label="show 17 new notifications"
@@ -226,6 +238,17 @@ export default function Header() {
                   ))}
                   <Box sx={{ flexGrow: 1 }} />
                   <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                  <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Link to={"/cart"}>
+                <Badge badgeContent={badgeCount} color="success">
+                  <ShoppingCart sx={{ color: "white" }} />
+                </Badge>
+              </Link>
+            </IconButton>
                     <IconButton
                       size="large"
                       edge="end"

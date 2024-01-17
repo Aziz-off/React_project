@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: "#000",
   fontWeight: "700",
   borderRadius: "20px",
-  background: "#191970",
+  background: "inherit",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
@@ -23,18 +23,12 @@ const Item = styled(Paper)(({ theme }) => ({
   height: "250px",
   cursor: "pointer",
   transition: "transform 0.3s ease-in-out",
+  
   "&:hover": {
     transform: "scale(1.02)",
     transition: "0.3s",
   },
 }));
-
-const textStyle = {
-  color: "#000",
-  fontSize: "36px",
-  marginBottom: "150px",
-  marginLeft: "40px",
-};
 
 const WatchNow = () => {
   return (
@@ -46,21 +40,20 @@ const WatchNow = () => {
         marginTop: "20px",
       }}
     >
-     <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        borderRadius: "40px",
-        
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        fontWeight: "700",
-        padding: "5% 0",
-      }}
-    >
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "40px",
+          fontWeight: "700",
+          padding: "5% 0",
+          // backgroundImage: `url("https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-2.jpg")`,
+          
+        }}
+      >
         <h2
           style={{
-            color: "#000",
+            color: "#fff",
             fontSize: "48px",
             marginBottom: "40px",
             textAlign: "center",
@@ -73,13 +66,13 @@ const WatchNow = () => {
             <Item>
               <img
                 style={{
-                  width: "80%",
+                  width: "100%",
                   height: "250px",
                   borderRadius: "10px",
                   marginLeft: "10px",
                 }}
                 src={img11}
-                alt="Casual dress"
+                alt="..."
               />
             </Item>
           </Grid>
@@ -87,7 +80,7 @@ const WatchNow = () => {
             <Item>
               <img
                 style={{
-                  width: "80%",
+                  width: "100%",
                   height: "250px",
                   borderRadius: "10px",
                   marginLeft: "70px",
@@ -101,7 +94,7 @@ const WatchNow = () => {
             <Item>
               <img
                 style={{
-                  width: "80%",
+                  width: "100%",
                   height: "250px",
                   borderRadius: "10px",
                   marginLeft: "110px",
@@ -115,7 +108,7 @@ const WatchNow = () => {
             <Item>
               <img
                 style={{
-                  width: "80%",
+                  width: "100%",
                   height: "250px",
                   borderRadius: "10px",
                   marginLeft: "50px",
