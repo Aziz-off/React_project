@@ -2,8 +2,8 @@ import React from "react";
 import ProductList from "../components/products/ProductList";
 import WatchNow from "../components/Navbar/WatchNow";
 import cosmos from "../assets/cosmos.jpg";
-import Head from "../components/Navbar/Body";
 
+import BoxPart from "../components/Navbar/BoxPart";
 
 const HomePage = () => {
   return (
@@ -15,7 +15,8 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-       <Head/>
+
+      <BoxPart/>
       <section
      
         style={{
@@ -27,12 +28,13 @@ const HomePage = () => {
         <div>
           <h1
             style={{
-              color: "grey",
+              color: "white",
               letterSpacing: "1.5px",
               fontWeight: "600",
+              fontFamily: "fantasy"
             }}
           >
-            Product page
+            MOST INTERESTING
           </h1>
         </div>
       </section>

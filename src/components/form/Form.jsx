@@ -10,7 +10,7 @@ const init = {
   category: "",
   price: "",
   picture: "",
-  videoPath:"",
+  videoPath: "",
   year: "",
 };
 
@@ -71,6 +71,7 @@ const Form = ({ isEdit }) => {
         fullWidth
         onChange={handleInput}
         value={product.title}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       <TextField
         placeholder="enter release year"
@@ -79,6 +80,7 @@ const Form = ({ isEdit }) => {
         fullWidth
         onChange={handleInput}
         value={product.year}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       <TextField
         placeholder="enter description"
@@ -87,6 +89,7 @@ const Form = ({ isEdit }) => {
         fullWidth
         onChange={handleInput}
         value={product.description}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       <CategorySelect handleInput={handleInput} />
       <TextField
@@ -96,6 +99,7 @@ const Form = ({ isEdit }) => {
         fullWidth
         onChange={handleInput}
         value={product.price}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       <TextField
         placeholder="enter url IMG"
@@ -104,14 +108,16 @@ const Form = ({ isEdit }) => {
         fullWidth
         onChange={handleInput}
         value={product.picture}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       <TextField
-        placeholder="enter url VIDEO" 
+        placeholder="enter url VIDEO"
         variant="outlined"
         name="videoPath"
         fullWidth
         onChange={handleInput}
         value={product.videoPath}
+        sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
       />
       {isEdit ? (
         <Button

@@ -21,6 +21,7 @@ const CategorySelect = (props) => {
           id="demo-simple-select-label"
           labelId="demo-simple-select-label"
           onChange={handleInput}
+          sx={{backgroundColor: "grey", borderRadius: '10px', opacity: '0.6'}}
         >
           {categories.map((elem) => (
             <MenuItem value={elem.name} key={elem.id}>

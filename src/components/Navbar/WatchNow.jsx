@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: "#000",
   fontWeight: "700",
   borderRadius: "20px",
-  background: "#191970",
+  background: "inherit",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
@@ -60,13 +60,14 @@ const WatchNow = () => {
     >
         <h2
           style={{
-            color: "#000",
+            color: "white",
             fontSize: "48px",
             marginBottom: "40px",
             textAlign: "center",
+            fontFamily: "fantasy"
           }}
         >
-          Смотрят сейчас
+          WATCH NOW
         </h2>
         <Grid container spacing={2}>
           <Grid item xs={4}>

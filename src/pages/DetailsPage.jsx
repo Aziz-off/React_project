@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Container } from "@mui/material";
-import Item from "antd/es/list/Item";
+
 
 const DetailsPage = () => {
   const { getOneProduct, oneProduct } = useProducts();
@@ -18,10 +18,13 @@ const DetailsPage = () => {
     <div>
       {oneProduct ? (
         <Container sx={{marginTop: 8}}>
-          <Card sx={{ maxWidth: "100%", mb: 10 }}>
+          <Card sx={{ maxWidth: "100%", mb: 10, background: "transparent",
+          border: "2px solid rgba(255, 255, 255, 0.2)",
+          backdropFilter: "blur(20px)",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)" }}>
             <CardActionArea sx={{height: 600, display: "flex", p: 2}}>
               <CardMedia
-			  sx={{width: 500, objectFit: 'contain'}}
+			  sx={{width: 1200, objectFit: 'contain'}}
                 component="img"
                 height="340"
                 image={oneProduct.picture}
