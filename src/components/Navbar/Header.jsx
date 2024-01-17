@@ -14,12 +14,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AdminPanel from "../admin/AdminPanel";
 import SideBar from "../products/SideBar";
 import { useCart } from "../context/CartContextProvider";
 import { ShoppingCart } from "@mui/icons-material";
+import { useFavorites } from "../context/FavoriteContextProvider";
 
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
@@ -68,14 +69,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header() {
   const navigate = useNavigate();
-  const [badgeCount, setBadgeCount] = React.useState(0);
+  const [cartBadgeCount, setCartBadgeCount] = React.useState(0);
+  const [favoritesBadgeCount, setFavoritesBadgeCount] = React.useState(0);
+  const {getProductsCountInFavorites, addProductToFavorites} = useFavorites();
   const { getProductsCountInCart, addProductToCart } = useCart();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
+
   React.useEffect(() => {
-    setBadgeCount(getProductsCountInCart());
+    setCartBadgeCount(getProductsCountInCart());
+  }, [addProductToCart]);
+
+  React.useEffect(() => {
+    setFavoritesBadgeCount(getProductsCountInFavorites());
+  }, [addProductToFavorites]);
+
+  React.useEffect(() => {
+    setCartBadgeCount(getProductsCountInCart());
   }, [addProductToCart]);
   React.useEffect(() => {
     setSearchParams({
@@ -228,7 +240,6 @@ export default function Header() {
                   >
                     <AdminPanel />
                   </IconButton>
-        
                   {pages.map((elem) => (
                     <Link key={elem.id} to={elem.link}>
                       <MenuItem onClick={handleMenuClose}>
@@ -244,7 +255,7 @@ export default function Header() {
               color="inherit"
             >
               <Link to={"/cart"}>
-                <Badge badgeContent={badgeCount} color="success">
+                <Badge badgeContent={cartBadgeCount} color="success">
                   <ShoppingCart sx={{ color: "white" }} />
                 </Badge>
               </Link>

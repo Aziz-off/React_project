@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import img1 from "../../assets/Carousel-1.jpg";
-import img2 from "../../assets/Carousel-2.jpeg";
-import img3 from "../../assets/Carousel-3.webp";
+import img2 from "../../assets/Carousel-2.webp";
+import img3 from "../../assets/Carousel-3.jpeg";
+import img4 from "../../assets/Carousel-4.jpeg"
+import img5 from "../../assets/Carousel-5.jpeg"
 
 const BoxPart = () => {
   const settings = {
@@ -36,6 +38,8 @@ const BoxPart = () => {
     { id: 1, image: img1, title: "Top Movie 1" },
     { id: 2, image: img2, title: "Top Movie 2" },
     { id: 3, image: img3, title: "Top Movie 3" },
+    { id: 4, image: img4, title: "Top Movie 3" },
+    { id: 5, image: img5, title: "Top Movie 3" },
   ];
 
   return (
