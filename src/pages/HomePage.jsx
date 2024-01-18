@@ -16,6 +16,7 @@ const HomePage = () => {
       }}
     >
       <BoxPart />
+
       <section
         style={{
           display: "flex",

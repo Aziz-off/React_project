@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 
 const FooterContainer = styled(Box)(({ theme }) => ({
-  
   color: "#FFF",
   padding: theme.spacing(2),
   marginTop: theme.spacing(2),
@@ -30,8 +29,13 @@ const Footer = () => {
           © {new Date().getFullYear()} Makers
         </Typography>
         <Link href="/terms-of-service" color="inherit" variant="body2">
-          Property of Team-Work
+          Contact us
         </Link>
+        <Typography sx={{ marginLeft: "30px" }}>
+          <Link href="/terms-of-service" color="inherit" variant="body2">
+            Property of Team-Work
+          </Link>
+        </Typography>
       </Toolbar>
     </FooterContainer>
   );

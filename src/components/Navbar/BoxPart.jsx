@@ -5,8 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import img1 from "../../assets/Carousel-1.jpg";
 import img2 from "../../assets/Carousel-2.webp";
 import img3 from "../../assets/Carousel-3.jpeg";
-import img4 from "../../assets/Carousel-4.jpeg"
-import img5 from "../../assets/Carousel-5.jpeg"
+import img4 from "../../assets/Carousel-4.jpeg";
+import img5 from "../../assets/Carousel-5.jpeg";
 
 const BoxPart = () => {
   const settings = {
@@ -43,19 +43,31 @@ const BoxPart = () => {
   ];
 
   return (
-    <Slider {...settings}>
-      {topMovies.map((movie) => (
-        <div key={movie.id}>
-          <div style={{ height: "550px", width: "80%", margin: "0 auto" }}>
-            <img
-              src={movie.image}
-              alt={movie.title}
-              style={{ width: "100%", height: "100%", borderRadius: "10px" }}
-            />
+    <div style={{ marginTop: "64px"}}>
+      <Slider {...settings}>
+        {topMovies.map((movie) => (
+          <div key={movie.id}>
+            <div
+              style={{
+                height: "550px",
+                width: "80%",
+                margin: "0 auto",
+              }}
+            >
+              <img
+                src={movie.image}
+                alt={movie.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

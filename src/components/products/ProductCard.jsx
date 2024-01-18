@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -44,6 +44,7 @@ export default function ProductCard({ elem }) {
   const { addProductToCart } = useCart();
   const { addProductToFavorites } = useFavorites();
   const { deleteProduct } = useProducts();
+  const [isFavorite, setIsFavorite] = useState(false);
   return (
     <Card sx={{ width: 250, margin: "10px auto", background: "none" }}>
       <FixedHeightCard>
@@ -65,22 +66,40 @@ export default function ProductCard({ elem }) {
         />
 
         <FixedHeightCardContent>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} component="h3">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            component="h3"
+          >
             {elem.title}
           </Typography>
         </FixedHeightCardContent>
 
         <OtherContent>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} color="white" component="h6">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            color="white"
+            component="h6"
+          >
             {elem.category}
           </Typography>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} variant="body2" color="white">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            variant="body2"
+            color="white"
+          >
             {elem.price} $
           </Typography>
         </OtherContent>
 
         <CardActions disableSpacing>
-          <IconButton onClick={() => addProductToFavorites(elem)} aria-label="add to favorites" sx={{ color: "white" }}>
+          <IconButton
+            onClick={() => {
+              addProductToFavorites(elem);
+              setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+            }}
+            aria-label="add to favorites"
+            sx={{ color: isFavorite ? "red" : "white" }}
+          >
             <FavoriteIcon />
           </IconButton>
           <Button
@@ -99,7 +118,10 @@ export default function ProductCard({ elem }) {
           >
             Delete
           </Button>
-          <IconButton onClick={() => addProductToCart(elem)} sx={{ color: "white" }}>
+          <IconButton
+            onClick={() => addProductToCart(elem)}
+            sx={{ color: "white" }}
+          >
             <AddShoppingCart />
           </IconButton>
         </CardActions>

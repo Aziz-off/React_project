@@ -6,7 +6,7 @@ import Footer from "./components/Navbar/Footer";
 
 const App = () => {
   return (
-    <div style={{ backgroundImage: `url(${cosmos})`, backgroundSize: "cover" }}>
+    <div style={{ backgroundImage: `url(${cosmos})`, backgroundSize: "cover", paddingTop: "1px" }}>
       <Header />
       <MainRoutes />
       <Footer />
