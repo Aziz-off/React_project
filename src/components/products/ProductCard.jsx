@@ -65,7 +65,7 @@ export default function ProductCard({ elem }) {
         />
 
         <FixedHeightCardContent>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} component="h3">
+          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} component="h1">
             {elem.title}
           </Typography>
         </FixedHeightCardContent>

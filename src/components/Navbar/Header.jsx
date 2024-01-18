@@ -71,7 +71,7 @@ export default function Header() {
   const navigate = useNavigate();
   const [cartBadgeCount, setCartBadgeCount] = React.useState(0);
   const [favoritesBadgeCount, setFavoritesBadgeCount] = React.useState(0);
-  const {getProductsCountInFavorites, addProductToFavorites} = useFavorites();
+  const { getProductsCountInFavorites, addProductToFavorites } = useFavorites();
   const { getProductsCountInCart, addProductToCart } = useCart();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -87,13 +87,11 @@ export default function Header() {
   }, [addProductToFavorites]);
 
   React.useEffect(() => {
-    setCartBadgeCount(getProductsCountInCart());
-  }, [addProductToCart]);
-  React.useEffect(() => {
     setSearchParams({
       q: search,
     });
   }, [search]);
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -147,7 +145,7 @@ export default function Header() {
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
-        horizontal: "right",
+        horizontal: "right"
       }}
       id={mobileMenuId}
       keepMounted
@@ -159,97 +157,108 @@ export default function Header() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-  <IconButton
-    size="large"
-    aria-label="show 4 new mails"
-    color="inherit"
-  >
-    <Badge badgeContent={4} color="error">
-      <MailIcon />
-    </Badge>
-  </IconButton>
-  <p>Messages</p>
-</MenuItem>
-<MenuItem>
-<IconButton size="large" aria-label="show 4 new mails" color="inherit">
-    <Badge badgeContent={4} color="error">
-      <MailIcon />
-    </Badge>
-  </IconButton>
-  <IconButton
-    size="large"
-    aria-label="show 17 new notifications"
-    color="inherit"
-  >
-    <Badge badgeContent={17} color="error">
-      <NotificationsIcon />
-    </Badge>
-  </IconButton>
-  <p>Notifications</p>
-</MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 4 new mails"
+          color="inherit"
+        >
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
 
-              <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="primary-search-account-menu"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+            onClick={() => navigate("/")}
+          >
+            🎥<b className="online">ON</b>-Line
+          </IconButton>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+
+          <SideBar />
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+            onClick={() => navigate("/admin")}
+          >
+            <AdminPanel />
+          </IconButton>
+          {pages.map((elem) => (
+            <Link key={elem.id} to={elem.link}>
+              <MenuItem onClick={handleMenuClose}>
+                <Typography textAlign={"center"} sx={{ fontFamily: "fantasy", fontWeight: "bold" }}>{elem.title}</Typography>
               </MenuItem>
-            </Menu>
-          );
-        
-          return (
-            <Box sx={{ flexGrow: 1 }}>
-              <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
-                <Toolbar>
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    sx={{ mr: 2 }}
-                    onClick={() => navigate("/")}
-                  >
-                    🎥<b className="online">ON</b>-Line
-                  </IconButton>
-                  <Search>
-                    <SearchIconWrapper>
-                      <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                      placeholder="Search…"
-                      onChange={(e) => setSearch(e.target.value)}
-                      value={search}
-                      inputProps={{ "aria-label": "search" }}
-                    />
-                  </Search>
-        
-                  <SideBar />
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    sx={{ mr: 2 }}
-                    onClick={() => navigate("/admin")}
-                  >
-                    <AdminPanel />
-                  </IconButton>
-                  {pages.map((elem) => (
-                    <Link key={elem.id} to={elem.link}>
-                      <MenuItem onClick={handleMenuClose}>
-                        <Typography textAlign={"center"}>{elem.title}</Typography>
-                      </MenuItem>
-                    </Link>
-                  ))}
-                  <Box sx={{ flexGrow: 1 }} />
-                  <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                  <IconButton
+            </Link>
+          ))}
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Link to={"/favorites"}>
+                <Badge badgeContent={favoritesBadgeCount} color="success">
+                  <FavoriteIcon sx={{ color: "white" }} />
+                </Badge>
+              </Link>
+            </IconButton>
+            <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -260,23 +269,22 @@ export default function Header() {
                 </Badge>
               </Link>
             </IconButton>
-                    <IconButton
-                      size="large"
-                      edge="end"
-                      aria-label="account of current user"
-                      aria-controls={menuId}
-                      aria-haspopup="true"
-                      onClick={handleProfileMenuOpen}
-                      color="inherit"
-                    >
-                      <AccountCircle />
-                    </IconButton>
-                  </Box>
-                </Toolbar>
-              </AppBar>
-        
-              {renderMenu}
-            </Box>
-          );
-        }
-        
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {renderMenu}
+    </Box>
+  );
+}

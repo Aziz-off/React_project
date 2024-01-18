@@ -11,6 +11,7 @@ import img5 from "../../assets/Carousel-5.jpeg"
 const BoxPart = () => {
   const settings = {
     dots: true,
+    zIndex: 1, 
     infinite: true,
     speed: 500,
     slidesToScroll: 1,

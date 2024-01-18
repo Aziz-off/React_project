@@ -19,7 +19,7 @@ const ProductList = () => {
 		setPage(value);
 	}
 
-	const ITEMS_PER_PAGE = 4;
+	const ITEMS_PER_PAGE = 5;
 	const count = Math.ceil(products.length / ITEMS_PER_PAGE);
 	console.log(count);
 
