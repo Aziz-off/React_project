@@ -5,46 +5,26 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-<<<<<<< HEAD
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  Container,
-  IconButton,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-=======
 import { Box, Button, CardActionArea, CardActions, Container, IconButton, Modal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
 import { useCart } from "../components/context/CartContextProvider";
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
 
 const DetailsPage = () => {
   const { getOneProduct, oneProduct } = useProducts();
   const {addProductToCart,checkProductInCart} = useCart()
   const { id } = useParams();
   const navigate = useNavigate();
-<<<<<<< HEAD
-
-  useEffect(() => {
-    getOneProduct(id);
-  }, []);
-=======
   const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
 
   useEffect(() => {
     getOneProduct(id);
   }, [id, getOneProduct]);
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
 
   const handleGoBack = () => {
     navigate("/");
   };
 
-<<<<<<< HEAD
-=======
   const handleOpenTrailerModal = () => {
     setIsTrailerModalOpen(true);
   };
@@ -53,7 +33,6 @@ const DetailsPage = () => {
     setIsTrailerModalOpen(false);
   };
 
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
   return (
     <div>
       {oneProduct ? (
@@ -79,11 +58,7 @@ const DetailsPage = () => {
               />
               <CardContent>
                 <Typography
-<<<<<<< HEAD
-                  gutterBottom
-=======
                   
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
                   variant="h3"
                   component="div"
                   color={"white"}
@@ -101,9 +76,6 @@ const DetailsPage = () => {
                   {oneProduct.description}
                 </Typography>
                 <br />
-<<<<<<< HEAD
-                <CardContent>
-=======
                 <Typography
                   variant="h6"
                   component="div"
@@ -122,7 +94,6 @@ const DetailsPage = () => {
                   {oneProduct.year}
                 </Typography>
                 <br />
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
                   <Typography
                     variant="h4"
                     component="div"
@@ -131,25 +102,12 @@ const DetailsPage = () => {
                   >
                     {oneProduct.price}$
                   </Typography>
-<<<<<<< HEAD
-                </CardContent>
-
-=======
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
                 <CardActions sx={{ position: "absolute", top: 0, right: 0 }}>
                   <IconButton sx={{ color: "white" }} onClick={handleGoBack}>
                     <CloseIcon />
                   </IconButton>
                 </CardActions>
                 <CardActions>
-<<<<<<< HEAD
-                  <Button sx={{ m: 2 }} size="small" variant="contained">
-                    Add to Bag
-                  </Button>
-                </CardActions>
-                <CardActions>
-                  <Button sx={{ m: 2 }} size="small" variant="contained">
-=======
                 {checkProductInCart(oneProduct.id) ? (<Button sx={{fontFamily:"fantasy"}}>Already in Cart</Button>) : (<Button sx={{ m: 2 }}
                       size="small"
                       variant="contained"
@@ -162,7 +120,6 @@ const DetailsPage = () => {
                     variant="contained"
                     onClick={handleOpenTrailerModal}
                   >
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
                     View Trailer
                   </Button>
                 </CardActions>

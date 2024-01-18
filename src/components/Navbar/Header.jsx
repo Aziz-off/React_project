@@ -156,15 +156,11 @@ export default function Header() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-<<<<<<< HEAD
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-=======
         <IconButton
           size="large"
           aria-label="show 4 new mails"
           color="inherit"
         >
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -188,30 +184,6 @@ export default function Header() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-<<<<<<< HEAD
-
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-
-  return (
-    <Box sx={{ flexGrow: 1, zIndex: 100, position: "fixed", width: "100%" }}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
-      >
-=======
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -231,7 +203,6 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
         <Toolbar>
           <IconButton
             size="large"
@@ -269,11 +240,7 @@ export default function Header() {
           {pages.map((elem) => (
             <Link key={elem.id} to={elem.link}>
               <MenuItem onClick={handleMenuClose}>
-<<<<<<< HEAD
-                <Typography textAlign={"center"}>{elem.title}</Typography>
-=======
                 <Typography textAlign={"center"} sx={{ fontFamily: "fantasy", fontWeight: "bold" }}>{elem.title}</Typography>
->>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
               </MenuItem>
             </Link>
           ))}
