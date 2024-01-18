@@ -15,8 +15,12 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
+<<<<<<< HEAD
       <BoxPart />
 
+=======
+      <BoxPart/>
+>>>>>>> e89e04d13c5a8a68bd898a9c82fc76c5e7671471
       <section
         style={{
           display: "flex",

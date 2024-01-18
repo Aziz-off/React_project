@@ -8,6 +8,7 @@ import AboutPage from '../pages/AboutPage';
 import ContactPage from '../pages/ContactPage';
 import CartPage from '../pages/CartPage';
 import Favorite from '../components/favorites/Favorite';
+import ModalView from '../components/products/ModalView';
 
 
 export const ADMIN_ROUTES = [
@@ -39,8 +40,8 @@ const PUBLIC_ROUTES = [
 	{ id: 4, link: "/about", element: <AboutPage /> },
 	{ id: 5, link: "/contact", element: <ContactPage /> },
 	{ id: 6, link: "/cart", element: <CartPage /> },
-
 	{ id: 7, link: "/favorites", element: <Favorite /> },
+	
 ];
 
 
