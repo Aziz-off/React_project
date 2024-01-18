@@ -4,16 +4,12 @@ import MainRoutes from "./routes/MainRoutes";
 import cosmos from "./assets/cosmos.jpg";
 import Footer from "./components/Navbar/Footer";
 
-
 const App = () => {
   return (
-    <div style={{ backgroundImage: `url(${cosmos})`, backgroundSize: 'cover' }}>
-      
-        <Header />
-        <MainRoutes />
-        <Footer/>
-       
-    
+    <div style={{ backgroundImage: `url(${cosmos})`, backgroundSize: "cover" }}>
+      <Header />
+      <MainRoutes />
+      <Footer />
     </div>
   );
 };
