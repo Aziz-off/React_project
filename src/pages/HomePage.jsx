@@ -15,7 +15,6 @@ const HomePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-
       <BoxPart/>
       <section
      

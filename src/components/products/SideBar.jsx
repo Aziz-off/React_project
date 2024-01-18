@@ -25,6 +25,7 @@ import {
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
     backgroundColor: "#212121", // Set background color
     color: "#ffffff", // Set text color
+    zIndex: 1000,
   });
   
   const SideBar = () => {
@@ -43,15 +44,21 @@ import {
       setIsIconClicked(false);
     };
   
+    const handleCategorySelect = (category) => {
+      // Handle category selection, e.g., fetch products based on the selected category
+      fetchByParams("category", category);
+      // Close the modal
+      handlePaperClose();
+    };
+  
     return (
       <>
-      <IconButton
+        <IconButton
           size="large"
           edge="start"
           color="inherit"
           aria-label="open drawer"
           onClick={handleIconClick}
-        
         >
           <img src={myIcon} alt="My Icon" style={{ width: "24px", height: "24px" }} />
         </IconButton>
@@ -63,22 +70,26 @@ import {
                 defaultValue="female"
                 name="radio-buttons-group"
                 aria-labelledby="demo-radio-buttons-group-label"
-                onChange={(e) => fetchByParams("category", e.target.value)}
               >
-                <FormControlLabel control={<Radio />} value={"all"} label={"ALL"} />
+                <FormControlLabel
+                  control={<Radio />}
+                  value={"all"}
+                  label={"ALL"}
+                  onClick={() => handleCategorySelect("all")}
+                />
                 {categories.map((elem) => (
                   <FormControlLabel
+                    key={elem.id}
                     label={elem.name}
                     control={<Radio />}
                     value={elem.name}
-                    key={elem.id}
+                    onClick={() => handleCategorySelect(elem.name)}
                   />
                 ))}
               </RadioGroup>
             </FormControl>
           </StyledPaper>
         )}
-        
       </>
     );
   };
