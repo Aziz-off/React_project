@@ -45,7 +45,7 @@ const Auth = () => {
             color: "white",
           }}
         >
-          Sign up to ON-Line
+          Sign up to on-line
         </Typography>
         <TextField
           sx={{

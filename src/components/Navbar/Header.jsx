@@ -27,7 +27,7 @@ import { ADMIN_USERS } from "../../helpers/const";
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
   { id: 2, title: "ABOUT", link: "/about" },
-  { id: 3, title: "CONTACT", link: "/contact" },
+  
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -217,10 +217,10 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, fontFamily: "fantasy" }}
             onClick={() => navigate("/")}
           >
-            🎥<b className="online">ON</b>-Line
+            🎥<b className="online">on</b>-line
           </IconButton>
           <Search>
             <SearchIconWrapper>

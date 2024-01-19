@@ -25,8 +25,9 @@ const Footer = () => {
           edge="start"
           color="inherit"
           aria-label="open drawer"
+          sx={{fontFamily: "fantasy"}}
         >
-          🎥<b className="online">ON</b>-Line
+          🎥<b className="online">on</b>-line
         </IconButton>
         <Typography variant="body2" sx={{ flexGrow: 1 }}>
           © {new Date().getFullYear()} Makers

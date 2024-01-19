@@ -8,6 +8,11 @@
       "picture": "https://foreveryoungadult.com/wp-content/uploads/2020/10/Cover-crash-landing-on-you.jpg",
       "videoPath": "https://youtu.be/GVQGWgeVc4k?t=13",
       "year": "2018",
+      "comments": [
+        {
+          "comment": ""
+        }
+      ],
       "id": 1
     },
     {
@@ -18,6 +23,11 @@
       "picture": "https://thewaltdisneycompany.com/app/uploads/2022/09/1920_Disenchanted_Digital_Teaser_KeyArt_v3_Lg-768x1138.jpg",
       "videoPath": "https://youtu.be/dRuwjZJ-DQw",
       "year": "2022",
+      "comments": [
+        {
+          "comment": ""
+        }
+      ],
       "id": 2
     },
     {
@@ -28,6 +38,17 @@
       "picture": "https://i.pinimg.com/originals/19/f4/a9/19f4a93c4e1d9fee3db7bd01f27bec52.jpg",
       "videoPath": "https://youtu.be/2ljxyaAIphc?t=5",
       "year": "2016",
+      "comments": [
+        {
+          "comment": ""
+        },
+        {
+          "comment": "sss"
+        },
+        {
+          "comment": "s"
+        }
+      ],
       "id": 3
     },
     {
@@ -38,6 +59,11 @@
       "picture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/97122373-630a-4b92-b8cf-3411c61709d8/600x900",
       "videoPath": "https://youtu.be/WLvmf9R6SyM",
       "year": "2015",
+      "comments": [
+        {
+          "comment": ""
+        }
+      ],
       "id": 4
     },
     {
@@ -48,16 +74,11 @@
       "picture": "https://doramalive.ru/upload/iblock/47c/prishelec_2_485042.jpg",
       "videoPath": "https://youtu.be/G-ZAFS5bkYI",
       "year": "2023",
-      "id": 5
-    },
-    {
-      "title": "Alienoid",
-      "description": "На протяжении многих веков инопланетная раса содержит своих преступников в человеческих телах, а люди об этом даже не догадываются. Способные перемещаться во времени с помощью энергетического кинжала Охранник с роботом-помощником поставлены следить, чтобы заключённые не пришли в себя и не сбежали. В 1380 году они ловят очередного проснувшегося преступника, но у его человеческой оболочки остаётся младенец, очевидно обречённый на смерть.",
-      "category": "Movie",
-      "price": 43222,
-      "picture": "https://doramalive.ru/upload/iblock/47c/prishelec_2_485042.jpg",
-      "videoPath": "https://youtu.be/G-ZAFS5bkYI",
-      "year": "2023",
+      "comments": [
+        {
+          "comment": ""
+        }
+      ],
       "id": 5
     },
     {
@@ -68,6 +89,11 @@
       "picture": "https://upload.wikimedia.org/wikipedia/ru/b/b4/Encanto_%28film%29_poster.jpg",
       "videoPath": "https://youtu.be/bvWRMAU6V-c",
       "year": "2021",
+      "comments": [
+        {
+          "comment": ""
+        }
+      ],
       "id": 6
     }
   ],

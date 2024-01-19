@@ -44,7 +44,7 @@ const Login = () => {
             color: "white",
           }}
         >
-          Sign in to ON-Line
+          Sign in to on-line
         </Typography>
         <TextField
           sx={{
