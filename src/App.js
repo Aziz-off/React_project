@@ -4,7 +4,6 @@ import MainRoutes from "./routes/MainRoutes";
 import cosmos from "./assets/cosmos.jpg";
 import Footer from "./components/Navbar/Footer";
 import AuthContextProvider from "./components/context/AuthContextProvider";
-
 const App = () => {
   return (
     <div

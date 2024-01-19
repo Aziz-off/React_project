@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./ProductReview.css";
 import { useProducts } from "../context/ProductContextProvider";
 import { useParams } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContextProvider"; // Import your authentication context
+import { useAuthContext } from "../context/AuthContextProvider"; 
 
 const ProductReview = () => {
-  const { user } = useAuthContext(); // Assuming you have an authentication context
+  const { user } = useAuthContext(); 
   const { addComment, oneProduct, getComments, comments, getOneProduct } =
     useProducts();
   const [obj, setObj] = useState({

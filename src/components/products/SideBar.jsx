@@ -23,9 +23,10 @@ import {
     outline: "none", // Remove default outline
     borderRadius: 8,
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#212121", // Set background color
+    backgroundColor: "#f4a460", // Set background color
     color: "#ffffff", // Set text color
     zIndex: 1000,
+
   });
   
   const SideBar = () => {
@@ -76,6 +77,7 @@ import {
                   value={"all"}
                   label={"ALL"}
                   onClick={() => handleCategorySelect("all")}
+                  
                 />
                 {categories.map((elem) => (
                   <FormControlLabel
