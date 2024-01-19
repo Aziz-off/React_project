@@ -30,8 +30,7 @@ const Favorite = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Favorites:", favorites);
-    
+    console.log("Favorites:", favorites.products);
   }, [favorites]);
 
   return (

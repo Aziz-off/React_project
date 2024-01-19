@@ -98,6 +98,31 @@ const ProductContextProvider = ({ children }) => {
   const createCategories = async (newCategory) => {
     await axios.post(API_CATEGORIES, newCategory);
   };
+  //!GET_COMMENTS
+  const getComments = async (id) => {
+    const result = await axios(`${API_PRODUCTS}/${id}`);
+    dispatch({
+      type: ACTION_PRODUCTS.GET_COMMENTS,
+      payload: { id, comments: result.data.comments },
+    });
+  };
+  
+  //!ADD_COMMENTS
+  async function addComment(id, newCommentText) {
+    console.log(id, newCommentText)
+    try {
+      const response = await axios.patch(`${API_PRODUCTS}/${id}`, newCommentText);
+      console.log(response)
+      dispatch({
+        type: ACTION_PRODUCTS.GET_COMMENTS,
+        payload: response.data.comments,
+      });
+      getComments(id)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 //!==========================SEARCH && FILTER===========================
 const fetchByParams = (query, value) => {
   const search = new URLSearchParams(window.location.search);
@@ -126,8 +151,12 @@ const fetchByParams = (query, value) => {
     categories: state.categories,
 	  editProduct,
 	  deleteProduct,
-    fetchByParams
+    fetchByParams,
+    addComment,
+    comments: state.comments,
+    getComments
   };
+  
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>
   );

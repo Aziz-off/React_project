@@ -32,8 +32,6 @@ const Auth = () => {
         container
         direction="column"
         justifyContent="center"
-        // flexDirection="column"
-        // marginTop="200px"
         alignItems="center"
         minHeight="100vh"
       >

@@ -44,10 +44,16 @@ const OtherContent = styled(CardContent)({
 export default function ProductCard({ elem }) {
   const navigate = useNavigate();
   const { addProductToCart } = useCart();
-  const { addProductToFavorites } = useFavorites();
+  const {
+    addProductToFavorites,
+    checkProductInFavorites,
+    deleteProductFromFavorites,
+  } = useFavorites();
   const { deleteProduct } = useProducts();
-  const [isFavorite, setIsFavorite] = useState(false);
-  const {user} = useAuthContext();
+  const [isFavorite, setIsFavorite] = useState(
+    checkProductInFavorites(elem.id)
+  );
+  const { user } = useAuthContext();
   return (
     <Card sx={{ width: 250, margin: "10px auto", background: "none" }}>
       <FixedHeightCard>
@@ -97,7 +103,11 @@ export default function ProductCard({ elem }) {
         <CardActions disableSpacing>
           <IconButton
             onClick={() => {
-              addProductToFavorites(elem);
+              if (isFavorite) {
+                deleteProductFromFavorites(elem.id);
+              } else {
+                addProductToFavorites(elem);
+              }
               setIsFavorite((prevIsFavorite) => !prevIsFavorite);
             }}
             aria-label="add to favorites"

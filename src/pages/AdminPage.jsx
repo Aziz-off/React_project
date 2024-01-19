@@ -19,7 +19,6 @@ const AdminPage = () => {
         Add category
       </Button>
       <AddProduct />
-      {/* <AddCategoryModal open={open} handleClose={handleClose}/> */}
     </div>
   );
 };
