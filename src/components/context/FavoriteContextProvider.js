@@ -1,18 +1,20 @@
 import React, { createContext, useContext, useReducer } from "react";
-import {ACTION_PRODUCTS } from "../../helpers/const";
+import { ACTION_PRODUCTS } from "../../helpers/const";
 import {
   getLocalStorage,
-  getProductsCountInFavorites
+  getFavoritesLocalStorage,
+  calcTotalPrice,
+  calcSubPrice,
+  getProductsCountInFavorites,
 } from "../../helpers/function";
 
 export const favoritesContext = createContext();
 export const useFavorites = () => useContext(favoritesContext);
 
 const INIT_STATE = {
-    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
-    favoritesLength: getProductsCountInFavorites(),
-  };
-  
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  favoritesLength: getProductsCountInFavorites(),
+};
 
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
@@ -23,70 +25,79 @@ const reducer = (state = INIT_STATE, action) => {
   }
 };
 
-const FavoriteContextProvider = ({ children }) => {
+const FavoritesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   const getFavorites = () => {
-    let favorites = getLocalStorage();
-    
+    let favorites = getFavoritesLocalStorage();
+    console.log(favorites);
+
     if (!favorites) {
       localStorage.setItem(
         "favorites",
-        JSON.stringify({ products: [] })
+        JSON.stringify({ products: [], totalPrice: 0 })
       );
-      
+
       favorites = {
-        products: []
+        products: [],
+        totalPrice: 0,
       };
     }
     dispatch({ type: ACTION_PRODUCTS.GET_FAVORITES, payload: favorites });
+    console.log(favorites);
   };
 
   const addProductToFavorites = (product) => {
-    let favorites = getLocalStorage();
+    let favorites = getFavoritesLocalStorage();
     if (!favorites) {
-      favorites = { products: [] };
+      favorites = { products: [], totalPrice: 0 };
     }
-    let productToFind = favorites.products.find(
+    let newProduct = {
+      item: product,
+      count: 1,
+      subPrice: +product.price,
+    };
+     
+    let productToFind = favorites.products.filter(
       (elem) => elem.item.id === product.id
     );
-    if (!productToFind) {
-      let newProduct = {
-        item: product,
-        count: 1,
-        subPrice: +product.price,
-      };
-      favorites.products.push(newProduct);
+    console.log(newProduct);
+    if (productToFind.length === 0) {
+      let newArr = favorites.products.push(newProduct);
+      console.log(newArr);
+    } else {
+      favorites.products = favorites.products.filter(
+        (elem) => elem.item.id !== product.id
+      );
     }
+    console.log(favorites.products);
+    favorites.totalPrice = calcTotalPrice(favorites.products);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     dispatch({ type: ACTION_PRODUCTS.GET_FAVORITES, payload: favorites });
   };
-  
+
   const checkProductInFavorites = (id) => {
-    let favorites = getLocalStorage();
+    let favorites = getFavoritesLocalStorage();
     if (favorites) {
       let newFavorites = favorites.products.filter(
-        (elem) => elem.item.id == id
+        (elem) => elem.item.id === id
       );
       return newFavorites.length > 0 ? true : false;
     }
   };
+
   const deleteProductFromFavorites = (id) => {
-    let favorites = getLocalStorage();
-    // фильтруем массив products, и оставляем только те продукты, у которых id не совпадает с id переданным при вызове функции
-    favorites.products = favorites.products.filter((elem) => {
-      return elem.item.id !== id;
-    });
-    
+    let favorites = getFavoritesLocalStorage();
+    favorites.products = favorites.products.filter(
+      (elem) => elem.item.id !== id
+    );
+    favorites.totalPrice = calcTotalPrice(favorites.products);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     dispatch({
       type: ACTION_PRODUCTS.GET_FAVORITES,
       payload: favorites,
     });
   };
-
-  
-  
 
   const values = {
     addProductToFavorites,
@@ -104,5 +115,4 @@ const FavoriteContextProvider = ({ children }) => {
   );
 };
 
-export default FavoriteContextProvider;
-
+export default FavoritesContextProvider;

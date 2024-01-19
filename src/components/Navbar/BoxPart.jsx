@@ -15,6 +15,7 @@ const BoxPart = () => {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
+    arrows: false, 
     responsive: [
       {
         breakpoint: 1024,

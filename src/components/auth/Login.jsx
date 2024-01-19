@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import {
   Alert,
   Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
   Grid,
   TextField,
   Typography,
@@ -34,8 +31,6 @@ const Login = () => {
         container
         direction="column"
         justifyContent="center"
-        // flexDirection="column"
-        // marginTop="200px"
         alignItems="center"
         minHeight="100vh"
       >
@@ -49,7 +44,7 @@ const Login = () => {
             color: "white",
           }}
         >
-          Sign in to ON-Line
+          Sign in to on-line
         </Typography>
         <TextField
           sx={{

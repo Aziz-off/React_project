@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import DetailsPage from "../pages/DetailsPage";
 import AboutPage from "../pages/AboutPage";
-import ContactPage from "../pages/ContactPage";
 import CartPage from "../pages/CartPage";
 import Favorite from "../components/favorites/Favorite";
 import Auth from "../components/auth/Auth";
@@ -38,18 +37,17 @@ const PUBLIC_ROUTES = [
   },
   { id: 3, link: "/products", element: <HomePage /> },
   { id: 4, link: "/about", element: <AboutPage /> },
-  { id: 5, link: "/contact", element: <ContactPage /> },
-  { id: 6, link: "/cart", element: <CartPage /> },
-  { id: 7, link: "/favorites", element: <Favorite /> },
+  { id: 5, link: "/cart", element: <CartPage /> },
+  { id: 6, link: "/favorites", element: <Favorite /> },
   {
     link: "/auth",
     element: <Auth />,
-    id: 8,
+    id: 7,
   },
   {
     link: "/login",
     element: <Login />,
-    id: 9,
+    id: 8,
   },
 ];
 

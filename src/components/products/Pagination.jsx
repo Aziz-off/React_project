@@ -6,7 +6,7 @@ export default function PaginationControlled(props) {
 
   return (
     <Stack spacing={2}>
-      <Typography  style={{ color: 'white' }}>
+      <Typography  style={{ color: 'white',  }}>
         Page: {page}
       </Typography>
       <Pagination
@@ -15,7 +15,7 @@ export default function PaginationControlled(props) {
         onChange={handleChange}
         variant="outlined"
         shape="rounded"
-        sx={{ '& .MuiPaginationItem-page': { color: 'white',} }}
+        sx={{ '& .MuiPaginationItem-page': { color: 'white', background: "#ff7f50"} }}
       />
     </Stack>
   );

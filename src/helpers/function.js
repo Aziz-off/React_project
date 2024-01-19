@@ -44,9 +44,13 @@ export const ProtectedRoutes = () => {
   const { user } = useAuthContext();
 
   function isAllowed() {
-    if (user.email === "admin@admin.com") return true;
+    
+    if (user && user.email === "admin@admin.com") {
+      return true;
+    }
     return false;
   }
 
-  return isAllowed() ? <Outlet/> : <Navigate to="/login" />
+  return isAllowed() ? <Outlet/> : <Navigate to="/login" />;
 };
+

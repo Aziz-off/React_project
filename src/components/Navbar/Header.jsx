@@ -27,7 +27,7 @@ import { ADMIN_USERS } from "../../helpers/const";
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
   { id: 2, title: "ABOUT", link: "/about" },
-  { id: 3, title: "CONTACT", link: "/contact" },
+  
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -206,8 +206,7 @@ export default function Header() {
   );
 
   return (
-
-    <Box sx={{ flexGrow: 1, width: "100%" }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
         sx={{ backgroundColor: "transparent", boxShadow: "none" }}
@@ -218,10 +217,10 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 , fontFamily:"fantasy"}}
+            sx={{ mr: 2, fontFamily: "fantasy" }}
             onClick={() => navigate("/")}
           >
-            🎥<b className="online" >on</b>-Line
+            🎥<b className="online">on</b>-line
           </IconButton>
           <Search>
             <SearchIconWrapper>

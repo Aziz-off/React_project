@@ -2,21 +2,22 @@ import { Button, Box, Modal, TextField, Typography } from "@mui/material";
 import { useProducts } from "../context/ProductContextProvider";
 import { useState } from "react";
 import { styled } from "@mui/system";
+import cosmos from "../../assets/cosmos.jpg";
 
 const StyledModal = styled(Modal)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
 const StyledBox = styled(Box)({
-  backgroundColor: 'white',
-  border: '2px solid #000',
-  borderRadius: '8px',
+  backgroundColor: "white",
+  border: "2px solid #000",
+  borderRadius: "8px",
   boxShadow: 24,
-  padding: '16px',
-  minWidth: '300px',
-  textAlign: 'center',
+  padding: "16px",
+  minWidth: "300px",
+  textAlign: "center",
 });
 
 const AddCategoryModal = ({ handleClose }) => {
@@ -30,7 +31,16 @@ const AddCategoryModal = ({ handleClose }) => {
   };
 
   return (
-    <StyledModal sx={{backgroundImage: `url(${cosmos})`, backgroundSize: "cover", paddingTop: "1px"}} open aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+    <StyledModal
+      sx={{
+        // backgroundImage: `url(${cosmos})`,
+        backgroundSize: "cover",
+        paddingTop: "1px",
+      }}
+      open
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
       <StyledBox>
         <Typography variant="h6">Add new category</Typography>
         <TextField

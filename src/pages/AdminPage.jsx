@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import AddProduct from "../components/products/AddProduct";
 import { Button } from "antd";
-import cosmos from "../assets/cosmos.jpg";
+import AddCategoryModal from "../components/products/AddCategoryModal";
 
 const AdminPage = () => {
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${cosmos})`,
-        backgroundSize: "cover",
-        paddingTop: "80px",
-      }}
-    >
+    <div>
       <Button variant="contained" onClick={handleOpen}>
         Add category
       </Button>
+
       <AddProduct />
-      {/* <AddCategoryModal open={open} handleClose={handleClose}/> */}
+      {open && <AddCategoryModal open={open} handleClose={handleClose} />}
     </div>
   );
 };
