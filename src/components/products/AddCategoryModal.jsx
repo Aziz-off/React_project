@@ -30,7 +30,7 @@ const AddCategoryModal = ({ handleClose }) => {
   };
 
   return (
-    <StyledModal open aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+    <StyledModal sx={{backgroundImage: `url(${cosmos})`, backgroundSize: "cover", paddingTop: "1px"}} open aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
       <StyledBox>
         <Typography variant="h6">Add new category</Typography>
         <TextField

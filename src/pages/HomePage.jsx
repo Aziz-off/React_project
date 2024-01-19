@@ -17,7 +17,6 @@ const HomePage = () => {
     >
       <BoxPart/>
       <section
-     
         style={{
           display: "flex",
           justifyContent: "center",
@@ -30,7 +29,7 @@ const HomePage = () => {
               color: "white",
               letterSpacing: "1.5px",
               fontWeight: "600",
-              fontFamily: "fantasy"
+              fontFamily: "fantasy",
             }}
           >
             MOST INTERESTING
@@ -39,7 +38,6 @@ const HomePage = () => {
       </section>
       <ProductList />
       <WatchNow />
-      
     </div>
   );
 };

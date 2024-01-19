@@ -30,13 +30,13 @@ const FavoritesContextProvider = ({ children }) => {
 
   const getFavorites = () => {
     let favorites = getLocalStorage();
-    //проверка на наличие данных под ключом cart в localStorage
+    
     if (!favorites) {
       localStorage.setItem(
         "favorites",
         JSON.stringify({ products: [], totalPrice: 0 })
       );
-      // перезаписываем переменную favorites с null на обект
+      
       favorites = {
         products: [],
         totalPrice: 0,

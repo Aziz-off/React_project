@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,12 +7,14 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContextProvider";
 import { useFavorites } from "../context/FavoriteContextProvider";
 import { useProducts } from "../context/ProductContextProvider";
 import { AddShoppingCart } from "@mui/icons-material";
+import { ADMIN_USERS } from "../../helpers/const";
+import { useAuthContext } from "../context/AuthContextProvider";
 
 const FixedHeightCard = styled(Card)({
   width: 250,
@@ -44,6 +46,8 @@ export default function ProductCard({ elem }) {
   const { addProductToCart } = useCart();
   const { addProductToFavorites } = useFavorites();
   const { deleteProduct } = useProducts();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const {user} = useAuthContext();
   return (
     <Card sx={{ width: 250, margin: "10px auto", background: "none" }}>
       <FixedHeightCard>
@@ -65,41 +69,75 @@ export default function ProductCard({ elem }) {
         />
 
         <FixedHeightCardContent>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} component="h1">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            component="h1"
+          >
             {elem.title}
           </Typography>
         </FixedHeightCardContent>
 
         <OtherContent>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} color="white" component="h6">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            color="white"
+            component="h6"
+          >
             {elem.category}
           </Typography>
-          <Typography sx={{ fontFamily: "fantasy", fontWeight: "bold" }} variant="body2" color="white">
+          <Typography
+            sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+            variant="body2"
+            color="white"
+          >
             {elem.price} $
           </Typography>
         </OtherContent>
 
         <CardActions disableSpacing>
-          <IconButton onClick={() => addProductToFavorites(elem)} aria-label="add to favorites" sx={{ color: "white" }}>
+          <IconButton
+            onClick={() => {
+              addProductToFavorites(elem);
+              setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+            }}
+            aria-label="add to favorites"
+            sx={{ color: isFavorite ? "red" : "white" }}
+          >
             <FavoriteIcon />
           </IconButton>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ bgcolor: "#ff6347", fontWeight: 900, marginRight: "5px" }}
-            onClick={() => navigate(`/edit/${elem.id}`)}
+          {ADMIN_USERS.map((item, index) =>
+            user && item.email === user.email ? (
+              <Box>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    bgcolor: "#ff6347",
+                    fontWeight: 900,
+                    marginRight: "5px",
+                  }}
+                  onClick={() => navigate(`/edit/${elem.id}`)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ bgcolor: "#333333", fontWeight: 900, color: "#ff6347" }}
+                  onClick={() => deleteProduct(elem.id)}
+                >
+                  Delete
+                </Button>
+              </Box>
+            ) : (
+              ""
+            )
+          )}
+
+          <IconButton
+            onClick={() => addProductToCart(elem)}
+            sx={{ color: "white" }}
           >
-            Edit
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ bgcolor: "#333333", fontWeight: 900, color: "#ff6347" }}
-            onClick={() => deleteProduct(elem.id)}
-          >
-            Delete
-          </Button>
-          <IconButton onClick={() => addProductToCart(elem)} sx={{ color: "white" }}>
             <AddShoppingCart />
           </IconButton>
         </CardActions>

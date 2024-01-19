@@ -1,5 +1,5 @@
-export const API_PRODUCTS = "http://localhost:8080/products";
-export const API_CATEGORIES = "http://localhost:8080/categories";
+export const API_PRODUCTS = "http://localhost:8001/products";
+export const API_CATEGORIES = "http://localhost:8001/categories";
 export const ACTION_PRODUCTS = {
   GET_PRODUCTS: "GET_PRODUCTS",
   GET_ONE_PRODUCT: "GET_ONE_PRODUCT",
@@ -7,3 +7,16 @@ export const ACTION_PRODUCTS = {
   GET_CART: "CET_CART",
   GET_FAVORITES: "GET_FAVORITES"
 };
+
+
+export const ACTION_USER = {
+  CHECK_USER: "CHECK_USER",
+  
+};
+
+export const ADMIN_USERS = [
+  {
+    email: 'admin@admin.com',
+    password: 12345678,
+  }
+]
