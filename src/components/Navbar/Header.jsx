@@ -27,7 +27,7 @@ import { ADMIN_USERS } from "../../helpers/const";
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
   { id: 2, title: "ABOUT", link: "/about" },
-  { id: 3, title: "CONTACT", link: "/contacts" },
+  { id: 3, title: "CONTACT", link: "/contact" },
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -258,7 +258,12 @@ export default function Header() {
               <MenuItem onClick={handleMenuClose}>
                 <Typography
                   textAlign={"center"}
-                  sx={{ fontFamily: "fantasy", fontWeight: "bold" }}
+                  sx={{
+                    fontFamily: "fantasy",
+                    fontWeight: "bold",
+                    color: "white",
+                    textDecoration: "none",
+                  }}
                 >
                   {elem.title}
                 </Typography>
