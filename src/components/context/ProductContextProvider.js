@@ -11,20 +11,34 @@ export const useProducts = () => useContext(productContext);
 const INIT_STATE = {
   products: [],
   oneProduct: null,
-  categories:[],
+  categories: [],
+  comments:[],
 };
+
 
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTION_PRODUCTS.GET_PRODUCTS:
       return { ...state, products: action.payload.data };
-      break;
+      
 
     case ACTION_PRODUCTS.GET_ONE_PRODUCT:
       return { ...state, oneProduct: action.payload };
-      break;
+      
     case ACTION_PRODUCTS.GET_CATEGORIES:
       return { ...state, categories: action.payload };
+    case ACTION_PRODUCTS.GET_COMMENTS:
+      const commentsArray = Array.isArray(action.payload.comments)
+    ? action.payload.comments.filter(comment => comment.comment !== "")
+    : [];
+
+    return {
+    ...state,
+    comments: commentsArray,
+  };
+
+
+   
     default:
       return state;
   }
@@ -50,8 +64,9 @@ const ProductContextProvider = ({ children }) => {
   
   async function getOneProduct(id) {
     try {
+      
       let { data } = await axios(`${API_PRODUCTS}/${id}`);
-      console.log("getOneProduct Data:", data);
+      
       dispatch({
         type: ACTION_PRODUCTS.GET_ONE_PRODUCT,
         payload: data,
@@ -60,6 +75,7 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   }
+  
   
 
   async function createProduct(newProduct) {
@@ -98,6 +114,36 @@ const ProductContextProvider = ({ children }) => {
   const createCategories = async (newCategory) => {
     await axios.post(API_CATEGORIES, newCategory);
   };
+
+  //!GET_COMMENTS
+  const getComments = async (id) => {
+    const result = await axios(`${API_PRODUCTS}/${id}`);
+    dispatch({
+      type: ACTION_PRODUCTS.GET_COMMENTS,
+      payload: { id, comments: result.data.comments },
+    });
+  };
+  
+  //!ADD_COMMENTS
+  async function addComment(id, newCommentText) {
+    console.log(id, newCommentText)
+    try {
+      const response = await axios.patch(`${API_PRODUCTS}/${id}`, newCommentText);
+      console.log(response)
+      dispatch({
+        type: ACTION_PRODUCTS.GET_COMMENTS,
+        payload: response.data.comments,
+      });
+      getComments(id)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  
+  
+  
+  
 //!==========================SEARCH && FILTER===========================
 const fetchByParams = (query, value) => {
   const search = new URLSearchParams(window.location.search);
@@ -109,7 +155,7 @@ const fetchByParams = (query, value) => {
   }
 
   const url = `${window.location.pathname}?${search.toString()}`;
-  console.log("Generated URL:", url); // Log the generated URL
+  console.log("Generated URL:", url); 
   navigate(url);
   getProducts();
 };
@@ -126,7 +172,10 @@ const fetchByParams = (query, value) => {
     categories: state.categories,
 	  editProduct,
 	  deleteProduct,
-    fetchByParams
+    fetchByParams,
+    addComment,
+    comments: state.comments,
+    getComments
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

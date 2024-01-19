@@ -76,7 +76,7 @@ const [state, dispatch] = useReducer(reducer, INIT_STATE);
   // функция для проверки на наличие товара в корзине
   const checkProductInCart = (id) => {
     let cart = getLocalStorage();
-    console.log(cart);
+    // console.log(cart);
     if (cart) {
       let newCart = cart.products.filter((elem) => elem.item.id == id);
       return newCart.length > 0 ? true : false;

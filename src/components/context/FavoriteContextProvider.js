@@ -2,8 +2,6 @@ import React, { createContext, useContext, useReducer } from "react";
 import {ACTION_PRODUCTS } from "../../helpers/const";
 import {
   getLocalStorage,
-  calcTotalPrice,
-  calcSubPrice,
   getProductsCountInFavorites
 } from "../../helpers/function";
 
@@ -25,7 +23,7 @@ const reducer = (state = INIT_STATE, action) => {
   }
 };
 
-const FavoritesContextProvider = ({ children }) => {
+const FavoriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   const getFavorites = () => {
@@ -34,64 +32,61 @@ const FavoritesContextProvider = ({ children }) => {
     if (!favorites) {
       localStorage.setItem(
         "favorites",
-        JSON.stringify({ products: [], totalPrice: 0 })
+        JSON.stringify({ products: [] })
       );
       
       favorites = {
-        products: [],
-        totalPrice: 0,
+        products: []
       };
     }
     dispatch({ type: ACTION_PRODUCTS.GET_FAVORITES, payload: favorites });
   };
 
   const addProductToFavorites = (product) => {
-    let favorites = getLocalStorage("favorites");
+    let favorites = getLocalStorage();
     if (!favorites) {
-      favorites = { products: [], totalPrice: 0 };
+      favorites = { products: [] };
     }
-    let newProduct = {
-      item: product,
-      count: 1,
-      subPrice: +product.price,
-    };
-    let productToFind = favorites.products.filter(
+    let productToFind = favorites.products.find(
       (elem) => elem.item.id === product.id
     );
-    if (productToFind.length === 0) {
+    if (!productToFind) {
+      let newProduct = {
+        item: product,
+        count: 1,
+        subPrice: +product.price,
+      };
       favorites.products.push(newProduct);
-    } else {
-      favorites.products = favorites.products.filter(
-        (elem) => elem.item.id !== product.id
-      );
     }
-    favorites.totalPrice = calcTotalPrice(favorites.products);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     dispatch({ type: ACTION_PRODUCTS.GET_FAVORITES, payload: favorites });
   };
-
+  
   const checkProductInFavorites = (id) => {
-    let favorites = getLocalStorage("favorites");
+    let favorites = getLocalStorage();
     if (favorites) {
       let newFavorites = favorites.products.filter(
-        (elem) => elem.item.id === id
+        (elem) => elem.item.id == id
       );
       return newFavorites.length > 0 ? true : false;
     }
   };
-
   const deleteProductFromFavorites = (id) => {
-    let favorites = getLocalStorage("favorites");
-    favorites.products = favorites.products.filter(
-      (elem) => elem.item.id !== id
-    );
-    favorites.totalPrice = calcTotalPrice(favorites.products);
+    let favorites = getLocalStorage();
+    // фильтруем массив products, и оставляем только те продукты, у которых id не совпадает с id переданным при вызове функции
+    favorites.products = favorites.products.filter((elem) => {
+      return elem.item.id !== id;
+    });
+    
     localStorage.setItem("favorites", JSON.stringify(favorites));
     dispatch({
       type: ACTION_PRODUCTS.GET_FAVORITES,
       payload: favorites,
     });
   };
+
+  
+  
 
   const values = {
     addProductToFavorites,
@@ -109,4 +104,5 @@ const FavoritesContextProvider = ({ children }) => {
   );
 };
 
-export default FavoritesContextProvider;
+export default FavoriteContextProvider;
+

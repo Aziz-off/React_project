@@ -206,7 +206,8 @@ export default function Header() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+
+    <Box sx={{ flexGrow: 1, width: "100%" }}>
       <AppBar
         position="static"
         sx={{ backgroundColor: "transparent", boxShadow: "none" }}
@@ -217,10 +218,10 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2 , fontFamily:"fantasy"}}
             onClick={() => navigate("/")}
           >
-            🎥<b className="online">ON</b>-Line
+            🎥<b className="online" >on</b>-Line
           </IconButton>
           <Search>
             <SearchIconWrapper>

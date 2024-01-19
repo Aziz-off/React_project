@@ -8,7 +8,6 @@ import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import CartPage from "../pages/CartPage";
 import Favorite from "../components/favorites/Favorite";
-import ModalView from "../components/products/ModalView";
 import Auth from "../components/auth/Auth";
 import Login from "../components/auth/Login";
 import { ProtectedRoutes } from "../helpers/function";

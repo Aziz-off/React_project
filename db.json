@@ -1,6 +1,7 @@
 {
   "products": [
     {
+      "id": 1,
       "title": "Crash Landing on You ",
       "description": "A South Korean heiress, Yoon Se-ri, gets caught in a storm while paragliding and finds herself blown off course into North Korea. Se-ri then runs into Ri Jeong-hyeok, Captain of the North Korean Special Forces and a member of the North Korean elite family. Captain Ri eventually hatches a plan to get Se-ri back to South Korea with the help of his squad, but not before they all tackle the obstacles that come their way—and then some. ",
       "category": "Series",
@@ -8,7 +9,16 @@
       "picture": "https://foreveryoungadult.com/wp-content/uploads/2020/10/Cover-crash-landing-on-you.jpg",
       "videoPath": "https://youtu.be/GVQGWgeVc4k?t=13",
       "year": "2018",
-      "id": 1
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Awesome movie!"
+        },
+        {
+          "id": 2,
+          "comment": "Can't wait to watch it!"
+        }
+      ]
     },
     {
       "title": "Disenchanted",
@@ -18,16 +28,46 @@
       "picture": "https://thewaltdisneycompany.com/app/uploads/2022/09/1920_Disenchanted_Digital_Teaser_KeyArt_v3_Lg-768x1138.jpg",
       "videoPath": "https://youtu.be/dRuwjZJ-DQw",
       "year": "2022",
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Awesome movie!"
+        },
+        {
+          "id": 2,
+          "comment": "Can't wait to watch it!"
+        }
+      ],
       "id": 2
     },
     {
-      "title": "Moonlovers",
-      "description": "Scarlet Heart Ryeo",
+      "title": "Moon lovers",
+      "description": "During a total solar eclipse, a 25-year-old 21st-century woman, Go Ha-jin (Lee Ji-eun), is transported back in time, to the Goryeo Dynasty.  She wakes up in the year of 941, in the body of Hae Soo, among the many princes of the ruling Wang family, during the reign of King Taejo.  She initially falls in love with the gentle and warm-hearted 8th Prince Wang Wook (Kang Ha-neul), but later develops a relationship with Wang So (Lee Joon-gi), the fearsome 4th Prince, who hides his face behind a mask and is given the derogatory label of \"wolf-dog\".",
       "category": "Series",
       "price": 4673829,
       "picture": "https://i.pinimg.com/originals/19/f4/a9/19f4a93c4e1d9fee3db7bd01f27bec52.jpg",
       "videoPath": "https://youtu.be/2ljxyaAIphc?t=5",
       "year": "2016",
+      "comments": [
+        {
+          "comment": "qwer"
+        },
+        {
+          "comment": "asdasd"
+        },
+        {
+          "comment": "asdasd"
+        },
+        {
+          "comment": "sadfasdf"
+        },
+        {
+          "comment": "asdfasd"
+        },
+        {
+          "comment": "гргшр"
+        }
+      ],
       "id": 3
     },
     {
@@ -38,27 +78,17 @@
       "picture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/97122373-630a-4b92-b8cf-3411c61709d8/600x900",
       "videoPath": "https://youtu.be/WLvmf9R6SyM",
       "year": "2015",
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Awesome movie!"
+        },
+        {
+          "id": 2,
+          "comment": "Can't wait to watch it!"
+        }
+      ],
       "id": 4
-    },
-    {
-      "title": "Alienoid",
-      "description": "На протяжении многих веков инопланетная раса содержит своих преступников в человеческих телах, а люди об этом даже не догадываются. Способные перемещаться во времени с помощью энергетического кинжала Охранник с роботом-помощником поставлены следить, чтобы заключённые не пришли в себя и не сбежали. В 1380 году они ловят очередного проснувшегося преступника, но у его человеческой оболочки остаётся младенец, очевидно обречённый на смерть.",
-      "category": "Movie",
-      "price": 43222,
-      "picture": "https://doramalive.ru/upload/iblock/47c/prishelec_2_485042.jpg",
-      "videoPath": "https://youtu.be/G-ZAFS5bkYI",
-      "year": "2023",
-      "id": 5
-    },
-    {
-      "title": "Alienoid",
-      "description": "На протяжении многих веков инопланетная раса содержит своих преступников в человеческих телах, а люди об этом даже не догадываются. Способные перемещаться во времени с помощью энергетического кинжала Охранник с роботом-помощником поставлены следить, чтобы заключённые не пришли в себя и не сбежали. В 1380 году они ловят очередного проснувшегося преступника, но у его человеческой оболочки остаётся младенец, очевидно обречённый на смерть.",
-      "category": "Movie",
-      "price": 43222,
-      "picture": "https://doramalive.ru/upload/iblock/47c/prishelec_2_485042.jpg",
-      "videoPath": "https://youtu.be/G-ZAFS5bkYI",
-      "year": "2023",
-      "id": 5
     },
     {
       "title": "Encanto",
@@ -68,6 +98,36 @@
       "picture": "https://upload.wikimedia.org/wikipedia/ru/b/b4/Encanto_%28film%29_poster.jpg",
       "videoPath": "https://youtu.be/bvWRMAU6V-c",
       "year": "2021",
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Awesome movie!"
+        },
+        {
+          "id": 2,
+          "comment": "Can't wait to watch it!"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "title": "Black widow",
+      "description": "Black Widow is a 2021 American superhero film based on Marvel Comics featuring the character of the same name. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the 24th film in the Marvel Cinematic Universe (MCU). The film was directed by Cate Shortland from a screenplay by Eric Pearson and stars Scarlett Johansson as Natasha Romanoff / Black Widow alongside Florence Pugh, David Harbour, O-T Fagbenle, Olga Kurylenko, William Hurt, Ray Winstone, and Rachel Weisz. Set after the events of Captain America: Civil War (2016), the film sees Romanoff on the run and forced to confront her past as a Russian spy before she became an Avenger.",
+      "category": "Movie",
+      "price": 3200,
+      "picture": "https://lumiere-a.akamaihd.net/v1/images/image_b97b56f3.jpeg?region=0%2C0%2C540%2C810",
+      "videoPath": "https://youtu.be/ybji16u608U?t=1",
+      "year": "2021",
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Awesome movie!"
+        },
+        {
+          "id": 2,
+          "comment": "Can't wait to watch it!"
+        }
+      ],
       "id": 6
     }
   ],
