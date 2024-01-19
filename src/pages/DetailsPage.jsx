@@ -5,10 +5,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, Button, CardActionArea, CardActions, Container, IconButton, Modal } from "@mui/material";
+import { Box, Button, CardActionArea, CardActions, Container, IconButton, Modal, Rating, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
 import { useCart } from "../components/context/CartContextProvider";
+import ProductReview from "../components/products/ProductReview";
+
 
 const DetailsPage = () => {
   const { getOneProduct, oneProduct } = useProducts();
@@ -21,6 +23,8 @@ const DetailsPage = () => {
     getOneProduct(id);
   }, [id, getOneProduct]);
 
+
+  
   const handleGoBack = () => {
     navigate("/");
   };
@@ -107,22 +111,45 @@ const DetailsPage = () => {
                     <CloseIcon />
                   </IconButton>
                 </CardActions>
-                <CardActions>
-                {checkProductInCart(oneProduct.id) ? (<Button sx={{fontFamily:"fantasy"}}>Already in Cart</Button>) : (<Button sx={{ m: 2 }}
-                      size="small"
-                      variant="contained"
-                       onClick={()=> addProductToCart(oneProduct)}>Bye for {oneProduct.price}$</Button>)} 
-                </CardActions>
-                <CardActions>
-                  <Button
-                    sx={{ m: 2 }}
-                    size="small"
-                    variant="contained"
-                    onClick={handleOpenTrailerModal}
-                  >
-                    View Trailer
-                  </Button>
-                </CardActions>
+                <CardActions sx={{ flexDirection: "row" }}>
+  {checkProductInCart(oneProduct.id) ? (
+    <Button sx={{ fontFamily: "fantasy" }}>Already in Cart</Button>
+  ) : (
+    <Button
+      sx={{  fontFamily: "fantasy" }}
+      size="small"
+      variant="contained"
+      onClick={() => addProductToCart(oneProduct)}
+    >
+      Bye for {oneProduct.price}$
+    </Button>
+  )}
+  <Button
+    sx={{ m: 2, fontFamily: "fantasy" }}
+    size="small"
+    variant="contained"
+    onClick={handleOpenTrailerModal}
+  >
+    View Trailer
+  </Button>
+</CardActions>ы
+                <Stack spacing={1} margin="8px 0">
+  <Rating
+    name="haf-rating"
+    defaultValue={0}
+    precision={1}
+    sx={{
+      "& .MuiRating-iconFilled": {
+        color: "#FFD700", // Yellow color for filled stars
+      },
+      "& .MuiRating-iconEmpty": {
+        color: "white", // White color for empty stars
+      },
+    }}
+  />
+</Stack>
+
+                
               </CardContent>
             </CardActionArea>
           </Card>
@@ -164,10 +191,13 @@ const DetailsPage = () => {
               />
             </Box>
           </Modal>
+          <ProductReview/>
         </Container>
+        
       ) : (
         <h1>Loading...</h1>
       )}
+   
     </div>
   );
 };

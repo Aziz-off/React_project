@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,7 +9,6 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
@@ -21,11 +20,14 @@ import SideBar from "../products/SideBar";
 import { useCart } from "../context/CartContextProvider";
 import { ShoppingCart } from "@mui/icons-material";
 import { useFavorites } from "../context/FavoriteContextProvider";
+import { useAuthContext } from "../context/AuthContextProvider";
+import { Avatar, Tooltip } from "@mui/material";
+import { ADMIN_USERS } from "../../helpers/const";
 
 const pages = [
   { id: 1, title: "HOME", link: "/products" },
   { id: 2, title: "ABOUT", link: "/about" },
-  { id: 3, title: "CONTACT", link: "/contacts" },
+  { id: 3, title: "CONTACT", link: "/contact" },
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -77,6 +79,12 @@ export default function Header() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
+  const { user, logOut } = useAuthContext();
+
+  function handleLogOut() {
+    handleMenuClose();
+    logOut();
+  }
 
   React.useEffect(() => {
     setCartBadgeCount(getProductsCountInCart());
@@ -129,13 +137,13 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to="/register">
+      <Link to="/auth">
         <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
       </Link>
       <Link to="/login">
         <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );
 
@@ -145,7 +153,7 @@ export default function Header() {
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
-        horizontal: "right"
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
@@ -157,11 +165,7 @@ export default function Header() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 4 new mails"
-          color="inherit"
-        >
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -202,18 +206,21 @@ export default function Header() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+    <Box sx={{ flexGrow: 1, width: "100%" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
+      >
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2 , fontFamily:"fantasy"}}
             onClick={() => navigate("/")}
           >
-            🎥<b className="online">ON</b>-Line
+            🎥<b className="online" >on</b>-Line
           </IconButton>
           <Search>
             <SearchIconWrapper>
@@ -228,20 +235,38 @@ export default function Header() {
           </Search>
 
           <SideBar />
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={() => navigate("/admin")}
-          >
-            <AdminPanel />
-          </IconButton>
+          {ADMIN_USERS.map((item, index) =>
+            user && item.email === user.email ? (
+              <IconButton
+                key={index}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                onClick={() => navigate("/admin")}
+              >
+                <AdminPanel />
+              </IconButton>
+            ) : (
+              ""
+            )
+          )}
+
           {pages.map((elem) => (
             <Link key={elem.id} to={elem.link}>
               <MenuItem onClick={handleMenuClose}>
-                <Typography textAlign={"center"} sx={{ fontFamily: "fantasy", fontWeight: "bold" }}>{elem.title}</Typography>
+                <Typography
+                  textAlign={"center"}
+                  sx={{
+                    fontFamily: "fantasy",
+                    fontWeight: "bold",
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  {elem.title}
+                </Typography>
               </MenuItem>
             </Link>
           ))}
@@ -269,17 +294,33 @@ export default function Header() {
                 </Badge>
               </Link>
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            {user ? (
+              <Tooltip title={user.email}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <Avatar alt={user.displayName} src={user.photoUrl} />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

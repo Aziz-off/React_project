@@ -7,33 +7,15 @@ import {
     TableHead,
     TableRow,
   } from "@mui/material";
-  import { useCart } from "../context/CartContextProvider";
   import React, { useEffect } from "react";
 import { useFavorites } from "../context/FavoriteContextProvider";
   
 const Favorite = () => {
     const { favorites, getFavorites, deleteProductFromFavorites } = useFavorites();
-  
+   
     useEffect(() => {
-        console.log("Fetching favorites...");
-      
-        const fetchData = async () => {
-          try {
-            await getFavorites();
-          } catch (error) {
-            console.error("Error fetching favorites:", error);
-          }
-        };
-      
-        fetchData();
-      }, []);
-      
-      useEffect(() => {
-        console.log("Favorites:", favorites);
-        // Дополнительная логика, которая зависит от обновленных favorites
-      }, [favorites]);
-      
-
+      getFavorites();
+    }, []);
   
     return (
       <TableContainer>
@@ -44,12 +26,13 @@ const Favorite = () => {
               <TableCell style={{ color: 'white', fontWeight: 'bold' }}>Title</TableCell>
               <TableCell style={{ color: 'white', fontWeight: 'bold' }}>Category</TableCell>
               <TableCell style={{ color: 'white', fontWeight: 'bold' }}>Price</TableCell>
-              <TableCell style={{ color: 'white', fontWeight: 'bold' }}>SubPrice</TableCell>
               <TableCell style={{ color: 'white', fontWeight: 'bold' }}>-</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {favorites.products.map((elem) => (
+            
+          {favorites.products && favorites.products.map((elem) => (
+            
               <TableRow key={elem.item.id}>
                 <TableCell component="th" scope="row">
                   <img width={"70"} src={elem.item.picture} alt="" />
@@ -57,14 +40,9 @@ const Favorite = () => {
                 <TableCell align="right" style={{ color: 'white' }}>{elem.item.title}</TableCell>
                 <TableCell align="right" style={{ color: 'white' }}>{elem.item.category}</TableCell>
                 <TableCell align="right" style={{ color: 'white' }}>{elem.item.price}</TableCell>
-                <TableCell align="right" style={{ color: 'white' }}>{elem.subPrice}</TableCell>
                 <TableCell align="right">
-                <Button
-  onClick={() => deleteProductFromFavorites(elem.item.id)}
-  style={{ color: 'white', backgroundColor: 'red' }}
->
-  DELETE
-</Button>
+                <Button onClick={() => deleteProductFromFavorites(elem.item.id)} 
+                style={{ color: 'white', backgroundColor: 'red' }}>DELETE</Button>
 
                 </TableCell>
               </TableRow>

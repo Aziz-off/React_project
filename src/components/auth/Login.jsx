@@ -1,31 +1,33 @@
-import { CheckBox } from "@mui/icons-material";
+import React, { useState } from "react";
 import {
   Alert,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContextProvider";
-import { useNavigate } from "react-router-dom";
 
-const Auth = () => {
-  const { authWithGoogle, register } = useAuthContext();
+const Login = () => {
+  const { user, logIn } = useAuthContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+
+  const handleLoginSubmit = async () => {
     try {
-      await register(email, password);
+      await logIn(email, password);
     } catch (error) {
       setError(error.message);
     }
 	navigate('/')
   };
+
   return (
     <>
       <Grid
@@ -47,7 +49,7 @@ const Auth = () => {
             color: "white",
           }}
         >
-          Sign up to ON-Line
+          Sign in to ON-Line
         </Typography>
         <TextField
           sx={{
@@ -74,27 +76,17 @@ const Auth = () => {
         <Button
           sx={{ marginTop: "30px", width: "40%", background: "#ff6347" }}
           variant="contained"
-          onClick={handleSubmit}
+          onClick={handleLoginSubmit}
         >
-          Sign Up
+          Sign In
         </Button>
-        <Button
-          sx={{ marginTop: "30px", width: "40%", background: "#ff6347" }}
-          variant="contained"
-          onClick={() => authWithGoogle()}
-        >
-          Continue with Google
-        </Button>
-        <FormControl>
-          <FormControlLabel
-            control={<CheckBox />}
-            label="Remember me"
-            sx={{ marginTop: "30px", color: "white" }}
-          />
-        </FormControl>
+        <div style={{ marginTop: "15px", color: "white", }}>
+          Do not have an account? 
+          <Link to={"/auth"} style={{marginLeft: "10px", color: "lightblue"}}> Sign Up</Link>
+        </div>
       </Grid>
     </>
   );
 };
 
-export default Auth;
+export default Login;
